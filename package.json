@@ -1,0 +1,48 @@
+{
+  "name": "yozora-vue",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/yozora-vue.umd.js",
+  "module": "./dist/yozora-vue.esm.js",
+  "types": "./dist/yozora-vue.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/yozora-vue.esm.js",
+      "require": "./dist/yozora-vue.js"
+    }
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "component",
+    "library",
+    "tailwindcss"
+  ],
+  "author": {
+    "name": "Yozora"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.5",
+    "vite-plugin-dts": "^4.5.0",
+    "vue-tsc": "^2.2.0"
+  }
+}
