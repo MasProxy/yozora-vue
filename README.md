@@ -1,5 +1,47 @@
-# Vue 3 + TypeScript + Vite
+# YOZORA-VUE
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Build beautiful, scalable UIs effortlessly with Yozora, a Vue 3 and Tailwind CSS component library focused on flexibility, responsiveness, and ease of customization. Perfect for developers seeking fast, maintainable, and utility-first design integration.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+> This library still on development. Please wait until we finished it 😊
+
+## Instalation
+>Before install this package, make sure you have a installed tailwind before. 
+
+- Install this library from NPM with this command:
+    ```
+    npm install yozora-vue
+    ```
+- Add this code into your **tailwind.config.js**
+    ```
+    //your code
+
+        theme: {
+            extend: {
+                colors: {
+                    primary: { DEFAULT: "#517C99", hover: "#81AECA" },
+                    secondary: { DEFAULT: "#D469C2", hover: "#966BC5" },
+                    disabled: { DEFAULT: "#C0BED7", second: "#EFEEFB" },
+                    success: { DEFAULT: "#5CBC60", hover: "#85DCA8" },
+                    danger: { DEFAULT: "#FD4D4D", hover: "#DC4747" },
+                    gray: { DEFAULT: "#DCE1E4", second: "#B0B0B0" },
+                    black: { DEFAULT: "#444444" },
+                },
+            },
+        },
+
+    //your code
+    ```
+- Installation is complete, you can use components like this.
+    ```
+    <script setup>
+        import { Button } from 'yozora-vue'
+    </script>
+
+    <template>
+        <Button>
+            Test
+        </Button>
+    </template>
+    ```
+
+> Full documentation will be released as soon as possible.
