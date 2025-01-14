@@ -1,14 +1,14 @@
 <!--
  * Component: Button
- * Version: 1.0.0
+ * Version: 1.0.2
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2025-01-12
+ * Last Modified: 2025-01-14
  * Description: This is a component for render a button.
 -->
 
 <script setup lang="ts">
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, type Ref } from 'vue'
 
 /**
  * Props for the Button component.
@@ -20,39 +20,30 @@ import { ref, onBeforeMount } from 'vue'
  * @prop {Boolean} textonly - If true, the button will be text only without background. Default is false.
  * @prop {String} href - The URL the button should link to. Default is an empty string.
  */
-const props = defineProps({
-  size: {
-    type: String,
-    default: 'md',
-  },
-  color: {
-    type: String,
-    default: 'primary',
-  },
-  rounded: {
-    type: String,
-    default: 'md',
-  },
-  outline: {
-    type: Boolean,
-    default: false,
-  },
-  textonly: {
-    type: Boolean,
-    default: false,
-  },
-  href: {
-    type: String,
-    default: '',
-  },
+interface ButtonProps {
+  size?: string // required
+  color?: string // optional
+  rounded?: string // optional
+  outline?: boolean // optional
+  textonly?: boolean // optional
+  href?: string // optional
+}
+
+const props = withDefaults(defineProps<ButtonProps>(), {
+  size: 'md',
+  color: 'primary',
+  rounded: 'md',
+  outline: false,
+  textonly: false,
+  href: '',
 })
 
-const finalClass = ref(
+const finalClass: Ref<String> = ref(
   'min-w-[80px] px-2 flex justify-center items-center font-medium'
 )
 
 //ANCHOR - function for initialize a button size
-const initializeSize = () => {
+const initializeSize = (): void => {
   switch (props.size) {
     case 'xs':
       finalClass.value += ' h-[32px] text-xs'
@@ -75,7 +66,7 @@ const initializeSize = () => {
 }
 
 //ANCHOR - function for initialize a button color
-const initializeColor = () => {
+const initializeColor = (): void => {
   if (props.outline) {
     switch (props.color) {
       case 'primary':
@@ -145,7 +136,7 @@ const initializeColor = () => {
 }
 
 //ANCHOR - function for initialize a button corner
-const initializeCorner = () => {
+const initializeCorner = (): void => {
   switch (props.rounded) {
     case 'none':
       finalClass.value += ' rounded-none'
