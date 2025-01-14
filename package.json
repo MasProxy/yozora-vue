@@ -19,10 +19,17 @@
     "vue3",
     "component",
     "library",
-    "tailwindcss"
+    "tailwindcss",
+    "yozora",
+    "yozora-vue",
+    "masproxy",
+    "mas proxy",
+    "yozoravue",
+    "vue plugin",
+    "markdown rendering"
   ],
   "author": {
-    "name": "Yozora"
+    "name": "MasProxy"
   },
   "scripts": {
     "dev": "vite",
