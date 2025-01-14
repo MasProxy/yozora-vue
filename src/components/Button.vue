@@ -1,6 +1,6 @@
 <!--
  * Component: Button
- * Version: 1.0.0
+ * Version: 1.0.2
  * Author: MasProxy
  * Date Created: 2024-06-10
  * Last Modified: 2025-01-14
