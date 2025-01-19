@@ -12,6 +12,11 @@ defineOptions({
   inheritAttrs: false,
 })
 
+/**
+ * Props for the InputLabel component.
+ * @prop {string} value - The value of the input label.
+ * @prop {boolean} required - If true, the input label will be required. Default is false.
+ */
 interface InputLabelProps {
   value?: string
   required?: boolean
