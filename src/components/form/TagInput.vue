@@ -10,6 +10,14 @@
 <script setup lang="ts">
 import { ref, watch, nextTick, onMounted, type Ref, computed } from 'vue'
 
+/**
+ * Props for the TagInput component.
+ * @prop {string[]} modelValue - The model value of the tag input.
+ * @prop {number | string} limit - The limit of the tags. Default is -1.
+ * @prop {string} bgColor - The background color of the tags. Default is '#f66b0e'.
+ * @prop {string} textColor - The text color of the tags. Default is ''.
+ */
+
 interface TagInputProps {
   modelValue?: string[]
   limit?: number | string

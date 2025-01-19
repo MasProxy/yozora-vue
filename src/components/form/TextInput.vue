@@ -14,6 +14,17 @@ defineOptions({
   inheritAttrs: false,
 })
 
+/**
+ * Props for the TextInput component.
+ * @prop {string} modelValue - The model value of the input field.
+ * @prop {string} errorMessage - The error message to display.
+ * @prop {boolean} isCurrency - If true, the input field will format the value as currency. Default is false.
+ * @prop {boolean} isNumber - If true, the input field will format the value as number. Default is false.
+ * @prop {boolean} hasIcon - If true, the input field will have an icon. Default is false.
+ * @prop {string} iconPosition - The position of the icon. Default is 'right'.
+ * @prop {string} size - The size of the input field. Default is 'md'.
+ */
+
 interface TextInputProps {
   modelValue?: string
   errorMessage?: string
