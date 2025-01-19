@@ -1,25 +1,30 @@
 <!--
  * Component: Button
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2025-01-14
+ * Last Modified: 2025-01-19
  * Description: This is a component for render a button.
 -->
 
 <script setup lang="ts">
 import { ref, onBeforeMount, type Ref } from 'vue'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 /**
  * Props for the Button component.
  *
- * @prop {String} size - The size of the button. Default is 'md'.
- * @prop {String} color - The color of the button. Default is 'primary'.
- * @prop {String} rounded - The rounded style of the button. Default is 'md'.
- * @prop {Boolean} outline - If true, the button will have an outline style. Default is false.
- * @prop {Boolean} textonly - If true, the button will be text only without background. Default is false.
- * @prop {String} href - The URL the button should link to. Default is an empty string.
+ * @prop {string} size - The size of the button. Default is 'md'.
+ * @prop {string} color - The color of the button. Default is 'primary'.
+ * @prop {string} rounded - The rounded style of the button. Default is 'md'.
+ * @prop {boolean} outline - If true, the button will have an outline style. Default is false.
+ * @prop {boolean} textonly - If true, the button will be text only without background. Default is false.
+ * @prop {string} href - The URL the button should link to. Default is an empty string.
  */
+
 interface ButtonProps {
   size?: string // required
   color?: string // optional
@@ -38,11 +43,13 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   href: '',
 })
 
-const finalClass: Ref<String> = ref(
+const finalClass: Ref<string> = ref(
   'min-w-[80px] px-2 flex justify-center items-center font-medium'
 )
 
-//ANCHOR - function for initialize a button size
+/**
+ * ANCHOR - function for initialize a button size
+ */
 const initializeSize = (): void => {
   switch (props.size) {
     case 'xs':
@@ -65,7 +72,9 @@ const initializeSize = (): void => {
   }
 }
 
-//ANCHOR - function for initialize a button color
+/**
+ * ANCHOR - function for initialize a button color
+ */
 const initializeColor = (): void => {
   if (props.outline) {
     switch (props.color) {
@@ -135,7 +144,9 @@ const initializeColor = (): void => {
   }
 }
 
-//ANCHOR - function for initialize a button corner
+/**
+ * ANCHOR - function for initialize a button corner
+ */
 const initializeCorner = (): void => {
   switch (props.rounded) {
     case 'none':
