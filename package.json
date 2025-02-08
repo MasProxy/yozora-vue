@@ -1,19 +1,24 @@
 {
   "name": "yozora-vue",
-  "version": "0.3.0",
+  "version": "0.3.19",
   "type": "module",
   "files": [
     "dist"
   ],
   "license": "MIT",
-  "main": "./dist/yozora-vue.umd.cjs",
-  "module": "./dist/yozora-vue.js",
+  "main": "./dist/yozora-vue.umd.js",
+  "module": "./dist/yozora-vue.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/yozora-vue.js",
-      "require": "./dist/yozora-vue.umd.cjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/yozora-vue.es.js",
+      "require": "./dist/yozora-vue.umd.js"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MasProxy/yozora-vue.git"
   },
   "keywords": [
     "vue",
@@ -26,20 +31,20 @@
     "masproxy",
     "mas proxy",
     "yozoravue",
-    "vue plugin",
-    "markdown rendering"
+    "vue plugin"
   ],
   "author": {
     "name": "MasProxy"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly --outDir dist",
+    "types": "vue-tsc ",
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "vue": "^3.5.13",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.*",
+    "vue": "^3.5.13"
   },
   "devDependencies": {
     "@types/node": "^22.10.5",
