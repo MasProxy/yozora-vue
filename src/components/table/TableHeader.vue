@@ -1,9 +1,9 @@
 <!--
  * Component: Table Header
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: MasProxy
  * Date Created: 2024-02-11
- * Last Modified: 2025-02-12
+ * Last Modified: 2025-02-13
  * Description: This is a component for render a table header.
 -->
 
@@ -26,7 +26,6 @@ interface TableHeaderProps {
   bgColor?: string
   textColor?: string
   textPosition?: string
-  onSort?: (column: string) => void
 }
 
 const props = withDefaults(defineProps<TableHeaderProps>(), {
@@ -35,8 +34,9 @@ const props = withDefaults(defineProps<TableHeaderProps>(), {
   borderless: false,
   textColor: '',
   textPosition: 'center',
-  onSort: () => {},
 })
+
+defineEmits(['sort'])
 
 const finalClass: Ref<string> = ref('px-4 py-1')
 const finalStyle: Ref<CSSProperties> = ref({})
@@ -85,9 +85,7 @@ const generateColor = () => {
  * ANCHOR - function for generate border
  */
 const generateBorder = () => {
-  if (props.borderless) {
-    finalClass.value = finalClass.value + ' border-b border-gray-700'
-  } else {
+  if (!props.borderless) {
     finalClass.value =
       finalClass.value +
       ' border-l border-t border-gray-700 text-center last:border-r'
@@ -108,8 +106,14 @@ onBeforeMount(() => {
   generateBorder()
 })
 </script>
+
 <template>
-  <th v-bind="$attrs" :class="finalClass" :style="{ ...finalStyle }">
+  <th
+    scope="col"
+    @click="$emit('sort')"
+    v-bind="$attrs"
+    :class="finalClass"
+    :style="{ ...finalStyle }">
     <slot></slot>
   </th>
 </template>
