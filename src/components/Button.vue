@@ -1,9 +1,9 @@
 <!--
  * Component: Button
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2025-01-19
+ * Last Modified: 2025-02-10
  * Description: This is a component for render a button.
 -->
 
@@ -44,7 +44,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 })
 
 const finalClass: Ref<string> = ref(
-  'min-w-[80px] px-2 flex justify-center items-center font-medium'
+  'min-w-[80px] px-2 flex justify-center items-center font-medium disabled:cursor-default hover:cursor-pointer'
 )
 
 /**
