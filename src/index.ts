@@ -8,6 +8,7 @@ import TagInput from './components/form/TagInput.vue'
 import Table from './components/table/Table.vue'
 import TableHeader from './components/table/TableHeader.vue'
 import TableData from './components/table/TableData.vue'
+import Pagination from './components/table/Pagination.vue'
 
 import './style.css'
 
@@ -30,5 +31,6 @@ export default {
     app.component('Table', Table)
     app.component('TableHeader', TableHeader)
     app.component('TableData', TableData)
+    app.component('Pagination', Pagination)
   },
 }
