@@ -20,6 +20,7 @@ export {
   Table,
   TableHeader,
   TableData,
+  Pagination,
 }
 
 export default {
