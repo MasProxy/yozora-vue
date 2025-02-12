@@ -4,6 +4,7 @@ import Button from './components/Button.vue'
 import TextInput from './components/form/TextInput.vue'
 import InputLabel from './components/form/InputLabel.vue'
 import TagInput from './components/form/TagInput.vue'
+import SelectInput from './components/form/SelectInput.vue'
 
 import Table from './components/table/Table.vue'
 import TableHeader from './components/table/TableHeader.vue'
@@ -21,6 +22,7 @@ export {
   TableHeader,
   TableData,
   Pagination,
+  SelectInput,
 }
 
 export default {
@@ -33,5 +35,6 @@ export default {
     app.component('TableHeader', TableHeader)
     app.component('TableData', TableData)
     app.component('Pagination', Pagination)
+    app.component('SelectInput', SelectInput)
   },
 }
