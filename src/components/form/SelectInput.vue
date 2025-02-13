@@ -34,7 +34,7 @@ defineEmits(['update:modelValue'])
       $emit('update:modelValue', ($event.target as HTMLSelectElement)?.value)
     "
     :class="small ? 'h-[36px]' : 'h-[42px]'"
-    class="appearance-none custom-select px-2 text-sm font-normal border border-gray-300 focus:border-primary focus-visible:outline-primary rounded-md shadow-sm block min-w-fit disabled:bg-gray-50 disabled:text-gray-500">
+    class="appearance-none custom-select px-2 text-sm font-normal border border-gray-300 focus:border-primary focus-visible:outline-primary rounded-md block min-w-fit disabled:bg-gray-50 disabled:text-gray-500">
     <slot></slot>
   </select>
 </template>
