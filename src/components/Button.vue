@@ -1,9 +1,9 @@
 <!--
  * Component: Button
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2025-02-10
+ * Last Modified: 2025-02-14
  * Description: This is a component for render a button.
 -->
 
@@ -183,7 +183,7 @@ onBeforeMount(() => {
     </button>
   </template>
   <template v-else>
-    <a class="inline-block" :class="finalClass" :href="href" v-bind="$attrs">
+    <a :class="finalClass" :href="href" v-bind="$attrs">
       <slot>Button</slot>
     </a>
   </template>
