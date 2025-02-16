@@ -6,6 +6,9 @@ import InputLabel from './components/form/InputLabel.vue'
 import TagInput from './components/form/TagInput.vue'
 import SelectInput from './components/form/SelectInput.vue'
 
+import Breadcrumb from './components/breadcrumb/Breadcrumb.vue'
+import BreadcrumbItem from './components/breadcrumb/BreadcrumbItem.vue'
+
 import Table from './components/table/Table.vue'
 import TableHeader from './components/table/TableHeader.vue'
 import TableData from './components/table/TableData.vue'
@@ -14,15 +17,17 @@ import Pagination from './components/table/Pagination.vue'
 import './style.css'
 
 export {
+  Breadcrumb,
+  BreadcrumbItem,
   Button,
-  TextInput,
   InputLabel,
-  TagInput,
-  Table,
-  TableHeader,
-  TableData,
   Pagination,
   SelectInput,
+  Table,
+  TableData,
+  TableHeader,
+  TagInput,
+  TextInput,
 }
 
 export default {
@@ -36,5 +41,7 @@ export default {
     app.component('TableData', TableData)
     app.component('Pagination', Pagination)
     app.component('SelectInput', SelectInput)
+    app.component('Breadcrumb', Breadcrumb)
+    app.component('BreadcrumbItem', BreadcrumbItem)
   },
 }

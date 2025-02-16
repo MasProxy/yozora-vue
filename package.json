@@ -1,6 +1,6 @@
 {
   "name": "yozora-vue",
-  "version": "0.6.4",
+  "version": "0.7.0",
   "type": "module",
   "files": [
     "dist"
@@ -28,10 +28,17 @@
     "tailwindcss",
     "yozora",
     "yozora-vue",
+    "yozora vue",
+    "vue3 component",
     "masproxy",
     "mas proxy",
     "yozoravue",
-    "vue plugin"
+    "vue plugin",
+    "vue components library",
+    "vue3 tailwindcss",
+    "vue3 library",
+    "vue3 plugin",
+    "vue3 UI components"
   ],
   "author": {
     "name": "MasProxy"
