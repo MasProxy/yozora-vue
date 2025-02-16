@@ -27,11 +27,18 @@ withDefaults(defineProps<BreadcrumbItemProps>(), {
   <template v-if="first">
     <li>
       <div class="flex items-center">
-        <a
-          :href="href"
-          class="text-sm font-medium text-gray-700 hover:text-primary">
-          {{ title }}
-        </a>
+        <template v-if="href === '#'">
+          <span class="text-sm font-medium text-gray-700 hover:text-primary">
+            {{ title }}
+          </span>
+        </template>
+        <template v-else>
+          <a
+            :href="href"
+            class="text-sm font-medium text-gray-700 hover:text-primary">
+            {{ title }}
+          </a>
+        </template>
       </div>
     </li>
   </template>
