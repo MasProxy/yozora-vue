@@ -1,6 +1,6 @@
 {
   "name": "yozora-vue",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "type": "module",
   "files": [
     "dist"
@@ -30,6 +30,8 @@
     "yozora-vue",
     "yozora vue",
     "vue3 component",
+    "vue component",
+    "vue UI component",
     "masproxy",
     "mas proxy",
     "yozoravue",
