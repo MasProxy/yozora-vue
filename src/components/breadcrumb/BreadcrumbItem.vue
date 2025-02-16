@@ -28,14 +28,15 @@ withDefaults(defineProps<BreadcrumbItemProps>(), {
     <li>
       <div class="flex items-center">
         <template v-if="href === '#'">
-          <span class="text-sm font-medium text-gray-700 hover:text-primary">
+          <span
+            class="hover:cursor-pointer text-sm font-medium text-gray-700 hover:text-primary">
             {{ title }}
           </span>
         </template>
         <template v-else>
           <a
             :href="href"
-            class="text-sm font-medium text-gray-700 hover:text-primary">
+            class="hover:cursor-pointer text-sm font-medium text-gray-700 hover:text-primary">
             {{ title }}
           </a>
         </template>
@@ -58,7 +59,8 @@ withDefaults(defineProps<BreadcrumbItemProps>(), {
             stroke-width="2"
             d="m1 9 4-4-4-4" />
         </svg>
-        <span class="ms-1 font-bold text-sm md:ms-2 dark:text-gray-400">
+        <span
+          class="hover:cursor-default ms-1 font-bold text-sm md:ms-2 dark:text-gray-400">
           {{ title }}
         </span>
       </div>
@@ -80,14 +82,14 @@ withDefaults(defineProps<BreadcrumbItemProps>(), {
         </svg>
         <template v-if="href === '#'">
           <span
-            class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
+            class="hover:cursor-pointer ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
             {{ title }}
           </span>
         </template>
         <template v-else>
           <a
             :href="href"
-            class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
+            class="hover:cursor-pointer ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
             {{ title }}
           </a>
         </template>
