@@ -2,6 +2,7 @@ import { App } from 'vue'
 import Button from './components/Button.vue'
 import Modal from './components/Modal.vue'
 
+import TextArea from './components/form/TextArea.vue'
 import TextInput from './components/form/TextInput.vue'
 import InputLabel from './components/form/InputLabel.vue'
 import TagInput from './components/form/TagInput.vue'
@@ -29,12 +30,14 @@ export {
   TableData,
   TableHeader,
   TagInput,
+  TextArea,
   TextInput,
 }
 
 export default {
   install(app: App) {
     app.component('Button', Button)
+    app.component('TextArea', TextArea)
     app.component('TextInput', TextInput)
     app.component('InputLabel', InputLabel)
     app.component('TagInput', TagInput)
