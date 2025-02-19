@@ -1,5 +1,6 @@
 import { App } from 'vue'
 import Button from './components/Button.vue'
+import Modal from './components/Modal.vue'
 
 import TextInput from './components/form/TextInput.vue'
 import InputLabel from './components/form/InputLabel.vue'
@@ -24,6 +25,7 @@ export {
   Pagination,
   SelectInput,
   Table,
+  Modal,
   TableData,
   TableHeader,
   TagInput,
@@ -43,5 +45,6 @@ export default {
     app.component('SelectInput', SelectInput)
     app.component('Breadcrumb', Breadcrumb)
     app.component('BreadcrumbItem', BreadcrumbItem)
+    app.component('Modal', Modal)
   },
 }
