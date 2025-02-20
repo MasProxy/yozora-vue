@@ -1,9 +1,9 @@
 <!--
  * Component: Modal
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: MasProxy
  * Date Created: 2025-02-19
- * Last Modified: 2025-02-19
+ * Last Modified: 2025-02-20
  * Description: This is a component for modal.
 -->
 
@@ -89,7 +89,7 @@ onMounted(() => {
           <!-- Modal header -->
           <div
             v-if="$slots.header"
-            class="flex items-center justify-between py-2 lg:py-4 px-4 border-b rounded-t">
+            class="flex items-center justify-between py-2 lg:py-4 px-4 border-b border-gray-200 rounded-t">
             <slot name="header"></slot>
             <button
               type="button"
