@@ -131,7 +131,11 @@ const handleBlur = () => {
     <input
       ref="input"
       v-bind="$attrs"
-      :value="modelValue"
+      :value="
+        typeof modelValue === 'object'
+          ? modelValue?.[optionLabel] ?? ''
+          : modelValue
+      "
       @focus="isSuggestionsVisible = true"
       @blur="handleBlur"
       @input="handleInput(($event.target as HTMLInputElement).value)"
