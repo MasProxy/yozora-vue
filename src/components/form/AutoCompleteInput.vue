@@ -15,11 +15,6 @@ defineOptions({
   inheritAttrs: false,
 })
 
-interface DataInterface {
-  title: string
-  value: any
-}
-
 /**
  * Props for the TextInput component.
  * @prop {boolean} isRequesting - Indicates if a request is being made.
@@ -36,7 +31,8 @@ interface AutoCompleteInputProps {
   errorMessage?: string
   size?: string
   noDataMessage?: string
-  data?: DataInterface[] | string[]
+  data?: any[] | string[]
+  optionLabel?: string
 }
 
 const props = withDefaults(defineProps<AutoCompleteInputProps>(), {
@@ -44,8 +40,9 @@ const props = withDefaults(defineProps<AutoCompleteInputProps>(), {
   modelValue: '',
   errorMessage: '',
   noDataMessage: 'No results found',
-  data: () => [] as DataInterface[] | string[],
+  data: () => [] as any[] | string[],
   size: 'md',
+  optionLabel: '',
 })
 
 /**
@@ -162,7 +159,7 @@ const handleBlur = () => {
             :key="index"
             @mousedown.prevent="setValue(item)"
             class="pl-3 py-2 cursor-pointer hover:bg-slate-50">
-            {{ typeof item === 'object' ? item.title : item }}
+            {{ typeof item === 'object' ? item?.[optionLabel] ?? '' : item }}
           </li>
         </template>
         <template v-else>
