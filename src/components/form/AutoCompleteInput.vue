@@ -151,7 +151,7 @@ const handleBlur = () => {
     </template>
     <div
       v-if="isSuggestionsVisible && modelValue !== ''"
-      class="absolute w-full bg-white border">
+      class="absolute w-full bg-white border border-gray-300 rounded z-20 shadow-sm font-normal">
       <ul class="divide-y max-h-[250px] overflow-y-auto">
         <template v-if="data.length > 0">
           <li
