@@ -49,10 +49,10 @@ const props = withDefaults(defineProps<AutoCompleteInputProps>(), {
  * Emits the following events:
  *
  * - `update:modelValue`: Emitted when the model value is updated.
- * - `iconClick`: Emitted when the icon is clicked.
- * - `useDebounce`: Emitted to indicate the use of debounce functionality.
+ * - `completed`: Emitted when the user has completed typing.
+ * - `selected`: Emitted when the user has selected an item from the suggestions.
  */
-const emit = defineEmits(['update:modelValue', 'complete'])
+const emit = defineEmits(['update:modelValue', 'completed', 'selected'])
 
 /**
  * ANCHOR - a final class of a text input component
@@ -92,6 +92,8 @@ const generateSizeClass = (): string => {
  */
 const setValue = (value: any) => {
   emit('update:modelValue', value)
+  emit('selected', value)
+
   input.value?.blur()
 }
 
@@ -116,7 +118,7 @@ function debounce<T extends (...args: any[]) => void>(
  */
 const handleInput = debounce((value: string) => {
   emit('update:modelValue', value)
-  emit('complete')
+  emit('completed')
 }, 300)
 
 const handleBlur = () => {
