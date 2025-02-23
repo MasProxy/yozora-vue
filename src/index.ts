@@ -2,6 +2,7 @@ import { App } from 'vue'
 import Button from './components/Button.vue'
 import Modal from './components/Modal.vue'
 
+import AutoCompleteInput from './components/form/AutoCompleteInput.vue'
 import TextArea from './components/form/TextArea.vue'
 import TextInput from './components/form/TextInput.vue'
 import InputLabel from './components/form/InputLabel.vue'
@@ -16,9 +17,12 @@ import TableHeader from './components/table/TableHeader.vue'
 import TableData from './components/table/TableData.vue'
 import Pagination from './components/table/Pagination.vue'
 
+import Spinner from './components/Spinner.vue'
+
 import './style.css'
 
 export {
+  AutoCompleteInput,
   Breadcrumb,
   BreadcrumbItem,
   Button,
@@ -27,6 +31,7 @@ export {
   SelectInput,
   Table,
   Modal,
+  Spinner,
   TableData,
   TableHeader,
   TagInput,
@@ -49,5 +54,7 @@ export default {
     app.component('Breadcrumb', Breadcrumb)
     app.component('BreadcrumbItem', BreadcrumbItem)
     app.component('Modal', Modal)
+    app.component('Spinner', Spinner)
+    app.component('AutoCompleteInput', AutoCompleteInput)
   },
 }
