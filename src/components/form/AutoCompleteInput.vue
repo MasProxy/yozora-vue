@@ -1,6 +1,6 @@
 <!--
  * Component: AutoCompleteInput
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: MasProxy
  * Date Created: 2025-02-23
  * Last Modified: 2025-02-23
@@ -26,6 +26,7 @@ interface DataInterface {
  * @prop {string} modelValue - The model value of the input field.
  * @prop {string} errorMessage - The error message to display.
  * @prop {string} size - The size of the input field. Default is 'md'.
+ * @prop {string} noDataMessage - The message to display when there is no data.
  * @prop {DataInterface[] | string[]} data - The data for the autocomplete suggestions.
  */
 
@@ -33,14 +34,16 @@ interface AutoCompleteInputProps {
   isRequesting?: boolean
   modelValue?: string | any
   errorMessage?: string
-  data?: DataInterface[] | string[]
   size?: string
+  noDataMessage?: string
+  data?: DataInterface[] | string[]
 }
 
 const props = withDefaults(defineProps<AutoCompleteInputProps>(), {
   isRequesting: false,
   modelValue: '',
   errorMessage: '',
+  noDataMessage: 'No results found',
   data: () => [] as DataInterface[] | string[],
   size: 'md',
 })
@@ -153,12 +156,17 @@ const handleBlur = () => {
       v-if="isSuggestionsVisible && modelValue !== ''"
       class="absolute w-full bg-white border">
       <ul class="divide-y max-h-[250px] overflow-y-auto">
-        <template v-for="item in data">
+        <template v-if="data.length > 0">
           <li
+            v-for="(item, index) in data"
+            :key="index"
             @mousedown.prevent="setValue(item)"
             class="pl-3 py-2 cursor-pointer hover:bg-slate-50">
             {{ typeof item === 'object' ? item.title : item }}
           </li>
+        </template>
+        <template v-else>
+          <li class="pl-3 py-2">{{ noDataMessage }}</li>
         </template>
       </ul>
     </div>
