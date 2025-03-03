@@ -1,9 +1,9 @@
 <!--
  * Component: Select
  * Author: MasProxy
- * Version: 1.0.1
+ * Version: 1.0.2
  * Date Created: 2025-02-12
- * Last Modified: 2025-02-12
+ * Last Modified: 2025-03-04
  * Description: This is a component for select.
 -->
 
@@ -16,12 +16,23 @@
 interface SelectInputProps {
   modelValue: string | undefined | number
   small?: boolean
+  disabled?: boolean
 }
 
-withDefaults(defineProps<SelectInputProps>(), {
+const props = withDefaults(defineProps<SelectInputProps>(), {
   modelValue: undefined,
   small: false,
+  disabled: false,
 })
+
+const arrowStyle = {
+  backgroundImage: props.disabled
+    ? 'url(\'data:image/svg+xml;utf8,<svg fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7"></path></svg>\')'
+    : 'url(\'data:image/svg+xml;utf8,<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7"></path></svg>\')',
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'right 0.5rem center',
+  backgroundSize: '1rem',
+}
 
 defineEmits(['update:modelValue'])
 </script>
@@ -33,17 +44,12 @@ defineEmits(['update:modelValue'])
     @input="
       $emit('update:modelValue', ($event.target as HTMLSelectElement)?.value)
     "
-    :class="small ? 'h-[36px]' : 'h-[42px]'"
-    class="appearance-none custom-select px-2 text-sm font-normal border border-gray-300 focus:border-primary focus-visible:outline-primary rounded-md block min-w-fit disabled:bg-gray-50 disabled:text-gray-500">
+    :disabled="disabled"
+    :style="arrowStyle"
+    :class="[
+      'appearance-none pr-7 px-2 text-sm font-normal border border-gray-300 focus:border-primary focus-visible:outline-primary rounded-md block min-w-fit disabled:bg-gray-50 disabled:text-gray-500',
+      small ? 'h-[36px]' : 'h-[42px]',
+    ]">
     <slot></slot>
   </select>
 </template>
-
-<style scoped>
-.custom-select {
-  background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7"></path></svg>'); /* Custom arrow */
-  background-repeat: no-repeat;
-  background-position: right 0.5rem center; /* Adjust position as needed */
-  background-size: 1rem; /* Adjust size as needed */
-}
-</style>
