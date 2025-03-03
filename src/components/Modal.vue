@@ -1,6 +1,6 @@
 <!--
  * Component: Modal
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: MasProxy
  * Date Created: 2025-02-19
  * Last Modified: 2025-02-20
@@ -81,7 +81,7 @@ onMounted(() => {
       <section
         v-bind="$attrs"
         :class="[
-          'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-[100] p-4 overflow-x-hidden overflow-y-auto max-h-[80svh]',
+          'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-[100] p-4 overflow-x-hidden overflow-y-auto max-h-[90svh]',
           finalClass,
         ]">
         <!-- Modal content -->
