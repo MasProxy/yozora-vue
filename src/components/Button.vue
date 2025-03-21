@@ -1,9 +1,9 @@
 <!--
  * Component: Button
- * Version: 1.0.5
+ * Version: 1.0.6
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2025-02-14
+ * Last Modified: 2025-03-22
  * Description: This is a component for render a button.
 -->
 
@@ -80,22 +80,22 @@ const initializeColor = (): void => {
     switch (props.color) {
       case 'primary':
         finalClass.value +=
-          ' bg-white border border-primary hover:bg-primary hover:text-white text-primary disabled:border-gray-400 disabled:text-gray-400'
+          ' bg-white border border-primary hover:bg-primary hover:text-white text-primary disabled:border-gray-400 disabled:bg-white disabled:text-gray-400'
         break
       case 'secondary':
         finalClass.value +=
-          ' bg-white border border-secondary hover:bg-secondary text-secondary hover:text-white disabled:border-gray-400 disabled:text-gray-400'
+          ' bg-white border border-secondary hover:bg-secondary text-secondary hover:text-white disabled:border-gray-400 disabled:bg-white disabled:text-gray-400'
         break
       case 'success':
         finalClass.value +=
-          ' bg-white border border-success hover:bg-success text-success hover:text-white disabled:border-gray-400 disabled:text-gray-400'
+          ' bg-white border border-success hover:bg-success text-success hover:text-white disabled:border-gray-400 disabled:bg-white disabled:text-gray-400'
         break
       case 'danger':
         finalClass.value +=
-          ' bg-white border border-danger hover:bg-danger hover:text-white text-danger disabled:border-gray-400 disabled:text-gray-400'
+          ' bg-white border border-danger hover:bg-danger hover:text-white text-danger disabled:border-gray-400 disabled:bg-white disabled:text-gray-400'
         break
       case 'gray':
-        finalClass.value += ` bg-white border border-gray-500 text-gray-500 hover:border-gray-600 hover:bg-blue-50 disabled:border-gray-400 disabled:text-gray-400`
+        finalClass.value += ` bg-white border border-gray-500 text-gray-500 hover:border-gray-600 hover:bg-blue-50 disabled:border-gray-400 disabled:bg-white disabled:text-gray-400`
         break
       default:
         break
