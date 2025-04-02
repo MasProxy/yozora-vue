@@ -18,11 +18,13 @@ defineOptions({
 /**
  * Props for the TextInput component.
  * @prop {boolean} isRequesting - Indicates if a request is being made.
+ * @prop {boolean} isLinked - Indicates if the value is linked on another data.
  * @prop {string} modelValue - The model value of the input field.
  * @prop {string} errorMessage - The error message to display.
  * @prop {string} size - The size of the input field. Default is 'md'.
  * @prop {string} noDataMessage - The message to display when there is no data.
  * @prop {DataInterface[] | string[]} data - The data for the autocomplete suggestions.
+ * @prop {string} optionLabel - The label to display for each option in the suggestions.
  */
 
 interface AutoCompleteInputProps {
