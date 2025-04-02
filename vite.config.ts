@@ -26,6 +26,7 @@ export default defineConfig({
         globals: {
           vue: 'Vue',
         },
+        exports: 'named', // Add this line to resolve the warning
       },
     },
   },
