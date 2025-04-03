@@ -1,9 +1,9 @@
 <!--
  * Component: TextInput
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2025-01-19
+ * Last Modified: 2025-04-03
  * Description: This is a component for input field.
 -->
 
@@ -148,7 +148,7 @@ const generateSizeClass = (): string => {
       "
       :class="[
         finalClass,
-        'py-2 px-3 border border-gray-300 focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500',
+        'py-2 px-3 bg-white border border-gray-300 focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500',
       ]" />
     <template v-if="hasIcon">
       <div

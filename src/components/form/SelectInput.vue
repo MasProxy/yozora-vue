@@ -1,9 +1,9 @@
 <!--
  * Component: Select
  * Author: MasProxy
- * Version: 1.0.2
+ * Version: 1.0.3
  * Date Created: 2025-02-12
- * Last Modified: 2025-03-04
+ * Last Modified: 2025-04-03
  * Description: This is a component for select.
 -->
 
@@ -47,7 +47,7 @@ defineEmits(['update:modelValue'])
     :disabled="disabled"
     :style="arrowStyle"
     :class="[
-      'appearance-none pr-7 px-2 text-sm font-normal border border-gray-300 focus:border-primary focus-visible:outline-primary rounded-md block min-w-fit disabled:bg-gray-50 disabled:text-gray-500',
+      'appearance-none pr-7 px-2 bg-white text-sm font-normal border border-gray-300 focus:border-primary focus-visible:outline-primary rounded-md block min-w-fit disabled:bg-gray-50 disabled:text-gray-500',
       small ? 'h-[36px]' : 'h-[42px]',
     ]">
     <slot></slot>
