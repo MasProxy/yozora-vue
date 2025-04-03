@@ -1,9 +1,9 @@
 <!--
  * Component: AutoCompleteInput
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: MasProxy
  * Date Created: 2025-02-23
- * Last Modified: 2025-04-02
+ * Last Modified: 2025-04-03
  * Description: This is a component for autocomplete input field.
 -->
 
@@ -148,7 +148,7 @@ const handleBlur = () => {
       :class="[
         finalClass,
         isLinked || isRequesting ? 'pr-8 pl-3' : 'px-3',
-        'py-2 border border-gray-300 focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500',
+        'py-2 border bg-white border-gray-300 focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500',
       ]" />
     <div
       v-if="isRequesting"
