@@ -1,9 +1,9 @@
 <!--
  * Component: TagInput
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2025-01-19
+ * Last Modified: 2025-05-17
  * Description: This is a component for make a multiple value on input like a tag.
 -->
 
@@ -133,9 +133,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="tag-input">
+  <div class="relative">
     <input
-      class="py-2 px-3 border border-gray-300 focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500"
+      class="py-2 px-3 border border-gray-300 focus:ring-primary focus:outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500"
       v-model="newTag"
       :disabled="tags.length >= Number(limit) && Number(limit) !== -1"
       :style="{ 'padding-left': `${paddingLeft}px` }"
@@ -144,15 +144,17 @@ onMounted(() => {
       @keydown.delete="newTag.length || removeTag(tags.length - 1)"
       type="text"
       enterkeyhint="enter" />
-    <ul class="tags" ref="tagsUl">
+    <ul
+      class="flex items-center gap-2 m-0 p-0 absolute top-0 bottom-0 left-[10px] max-w-[75%] overflow-x-auto"
+      ref="tagsUl">
       <li
         v-for="(tag, index) in tags"
         :key="tag"
-        class="tag"
+        class="px-2 py-1 rounded whitespace-nowrap transition-colors duration-100 flex items-center"
         :style="{ color: tagTextColor, background: bgColor }">
         {{ tag }}
         <button
-          class="delete"
+          class="bg-transparent outline-none border-none cursor-pointer ml-1"
           :style="{ color: tagTextColor }"
           @click="removeTag(index)">
           x
@@ -161,38 +163,3 @@ onMounted(() => {
     </ul>
   </div>
 </template>
-
-<style scoped>
-.tag-input {
-  position: relative;
-}
-
-ul {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 10px;
-  max-width: 75%;
-  overflow-x: auto;
-}
-
-.tag {
-  padding: 2px 5px;
-  border-radius: 4px;
-  white-space: nowrap;
-  transition: background 0.1s ease;
-}
-
-.delete {
-  background: none;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
-</style>
