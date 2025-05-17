@@ -23,6 +23,7 @@ interface TagInputProps {
   limit?: number | string
   bgColor?: string
   textColor?: string
+  placeholder?: string
 }
 
 const props = withDefaults(defineProps<TagInputProps>(), {
@@ -30,6 +31,7 @@ const props = withDefaults(defineProps<TagInputProps>(), {
   limit: -1,
   bgColor: '#f66b0e',
   textColor: '',
+  placeholder: 'Add a tag',
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -133,33 +135,32 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative">
-    <input
-      class="py-2 px-3 border border-gray-300 focus:ring-primary focus:outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500"
-      v-model="newTag"
-      :disabled="tags.length >= Number(limit) && Number(limit) !== -1"
-      :style="{ 'padding-left': `${paddingLeft}px` }"
-      @keydown.prevent.enter="addTag(newTag)"
-      @keydown.prevent.tab="addTag(newTag)"
-      @keydown.delete="newTag.length || removeTag(tags.length - 1)"
-      type="text"
-      enterkeyhint="enter" />
-    <ul
-      class="flex items-center gap-2 m-0 p-0 absolute top-0 bottom-0 left-[10px] max-w-[75%] overflow-x-auto"
-      ref="tagsUl">
-      <li
-        v-for="(tag, index) in tags"
-        :key="tag"
-        class="px-2 py-1 rounded whitespace-nowrap transition-colors duration-100 flex items-center"
-        :style="{ color: tagTextColor, background: bgColor }">
-        {{ tag }}
-        <button
-          class="bg-transparent outline-none border-none cursor-pointer ml-1"
-          :style="{ color: tagTextColor }"
-          @click="removeTag(index)">
-          x
-        </button>
-      </li>
-    </ul>
+  <div
+    class="border border-gray-300 focus-within:ring-primary focus-within:outline-primary font-normal rounded-md shadow-sm w-full px-2 py-2 bg-white">
+    <div class="flex flex-wrap items-center gap-2 min-h-[30px]">
+      <template v-for="(tag, index) in tags" :key="tag">
+        <span
+          class="px-2 py-1 rounded whitespace-nowrap transition-colors duration-100 flex items-center text-sm"
+          :style="{ color: tagTextColor, background: bgColor }">
+          {{ tag }}
+          <button
+            class="bg-transparent outline-none border-none cursor-pointer ml-1"
+            :style="{ color: tagTextColor }"
+            @click="removeTag(index)">
+            x
+          </button>
+        </span>
+      </template>
+      <input
+        class="flex-1 min-w-[120px] py-1 px-2 bg-transparent border-none outline-none text-sm disabled:bg-gray-50 disabled:text-gray-500"
+        v-model="newTag"
+        :disabled="tags.length >= Number(limit) && Number(limit) !== -1"
+        @keydown.prevent.enter="addTag(newTag)"
+        @keydown.prevent.tab="addTag(newTag)"
+        @keydown.delete="newTag.length || removeTag(tags.length - 1)"
+        type="text"
+        enterkeyhint="enter"
+        :placeholder="placeholder" />
+    </div>
   </div>
 </template>
