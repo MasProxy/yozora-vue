@@ -1,9 +1,9 @@
 <!--
  * Component: TextInput
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2025-04-03
+ * Last Modified: 2025-08-30
  * Description: This is a component for input field.
 -->
 
@@ -73,6 +73,8 @@ const validateValue = (value: string) => {
 const validateNumber = (value: string): string => {
   let tempValue = value.replace(/\D/g, '')
 
+  tempValue = tempValue.replace(/^0+(?!$)/, '')
+
   return tempValue
 }
 
@@ -80,15 +82,14 @@ const validateNumber = (value: string): string => {
  * ANCHOR - function for validate a currency
  */
 const validateCurrency = (value: string): string => {
-  let tempValue = value.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  let tempValue = value.replace(/\D/g, '')
 
-  if (tempValue === '') {
-    tempValue = '0'
-  }
-  if (tempValue.length > 1) {
-    if (tempValue[0] === '0') {
-      tempValue = tempValue.slice(1)
-    }
+  // Remove leading zeros except for single '0'
+  tempValue = tempValue.replace(/^0+(?!$)/, '')
+
+  // Format with commas if not empty
+  if (tempValue !== '') {
+    tempValue = tempValue.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
   return tempValue
