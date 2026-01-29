@@ -1,9 +1,9 @@
 <!--
  * Component: Modal
- * Version: 1.0.2
+ * Version: 1.1.0
  * Author: MasProxy
  * Date Created: 2025-02-19
- * Last Modified: 2025-02-20
+ * Last Modified: 2026-01-30
  * Description: This is a component for modal.
 -->
 
@@ -85,16 +85,17 @@ onMounted(() => {
           finalClass,
         ]">
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow-sm h-full w-full">
+        <div
+          class="relative bg-white rounded-lg shadow-sm h-full w-full dark:bg-dark-surface dark:text-dark-text">
           <!-- Modal header -->
           <div
             v-if="$slots.header"
-            class="flex items-center justify-between py-2 lg:py-4 px-4 border-b border-gray-200 rounded-t">
+            class="flex items-center justify-between py-2 lg:py-4 px-4 border-b border-gray-200 rounded-t dark:border-dark-border">
             <slot name="header"></slot>
             <button
               type="button"
               @click="$emit('close')"
-              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center">
+              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:text-dark-muted dark:hover:bg-dark-surface2 dark:hover:text-dark-text">
               <svg
                 class="w-3 h-3"
                 aria-hidden="true"
@@ -118,7 +119,7 @@ onMounted(() => {
           <!-- Modal footer -->
           <div
             v-if="$slots.footer"
-            class="flex items-center px-6 py-3 space-x-2 border-t border-gray-200 rounded-b">
+            class="flex items-center px-6 py-3 space-x-2 border-t border-gray-200 rounded-b dark:border-dark-border">
             <slot name="footer"></slot>
           </div>
         </div>

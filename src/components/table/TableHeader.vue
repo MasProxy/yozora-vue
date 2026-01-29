@@ -1,9 +1,9 @@
 <!--
  * Component: Table Header
- * Version: 1.1.1
+ * Version: 1.2.0
  * Author: MasProxy
  * Date Created: 2024-02-11
- * Last Modified: 2025-02-13
+ * Last Modified: 2026-01-30
  * Description: This is a component for render a table header.
 -->
 
@@ -63,9 +63,9 @@ const headerTextColor = computed(() => {
   }
 
   const hex = colorToHex(props.bgColor).replace('#', '')
-  const r = parseInt(hex.substring(0, 2), 16)
-  const g = parseInt(hex.substring(2, 4), 16)
-  const b = parseInt(hex.substring(4, 6), 16)
+  const r = Number.parseInt(hex.substring(0, 2), 16)
+  const g = Number.parseInt(hex.substring(2, 4), 16)
+  const b = Number.parseInt(hex.substring(4, 6), 16)
   const yiq = (r * 299 + g * 587 + b * 114) / 1000
 
   return yiq >= 128 ? 'black' : 'white'
@@ -88,7 +88,7 @@ const generateBorder = () => {
   if (!props.borderless) {
     finalClass.value =
       finalClass.value +
-      ' border-l border-t border-gray-700 text-center last:border-r'
+      ' border-l border-t border-gray-700 text-center last:border-r dark:border-dark-border'
   }
 }
 

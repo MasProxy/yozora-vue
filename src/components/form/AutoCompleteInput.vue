@@ -1,9 +1,9 @@
 <!--
  * Component: AutoCompleteInput
- * Version: 1.0.3
+ * Version: 1.1.0
  * Author: MasProxy
  * Date Created: 2025-02-23
- * Last Modified: 2025-04-03
+ * Last Modified: 2026-01-30
  * Description: This is a component for autocomplete input field.
 -->
 
@@ -148,7 +148,7 @@ const handleBlur = () => {
       :class="[
         finalClass,
         isLinked || isRequesting ? 'pr-8 pl-3' : 'px-3',
-        'py-2 border bg-white border-gray-300 focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500',
+        'py-2 border bg-white border-gray-300 focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500 dark:bg-dark-surface dark:border-dark-border dark:text-dark-text dark:placeholder:text-dark-muted dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted',
       ]" />
     <div
       v-if="isRequesting"
@@ -175,14 +175,14 @@ const handleBlur = () => {
     </div>
     <div
       v-if="isSuggestionsVisible && modelValue !== ''"
-      class="absolute w-full bg-white border border-gray-300 rounded z-20 shadow-sm font-normal">
-      <ul class="divide-y max-h-[250px] overflow-y-auto">
+      class="absolute w-full bg-white border border-gray-300 rounded z-20 shadow-sm font-normal dark:bg-dark-surface dark:border-dark-border dark:text-dark-text">
+      <ul class="divide-y max-h-[250px] overflow-y-auto dark:divide-dark-border">
         <template v-if="data.length > 0">
           <li
             v-for="(item, index) in data"
             :key="index"
             @mousedown.prevent="setValue(item)"
-            class="pl-3 py-2 cursor-pointer hover:bg-slate-50">
+            class="pl-3 py-2 cursor-pointer hover:bg-slate-50 dark:hover:bg-dark-surface2">
             {{ typeof item === 'object' ? item?.[optionLabel] ?? '' : item }}
           </li>
         </template>

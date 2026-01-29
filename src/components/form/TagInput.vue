@@ -1,9 +1,9 @@
 <!--
  * Component: TagInput
- * Version: 1.0.1
+ * Version: 1.1.0
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2025-05-17
+ * Last Modified: 2026-01-30
  * Description: This is a component for make a multiple value on input like a tag.
 -->
 
@@ -48,12 +48,7 @@ const tagsUl: Ref<HTMLElement | null> = ref(null)
 const addTag = (tag: string) => {
   const limit = Number(props.limit)
 
-  if (limit !== -1) {
-    if (tags.value.length < limit) {
-      tags.value.push(tag) // add the new tag to the tags array
-      newTag.value = '' // reset newTag
-    }
-  } else {
+  if (limit === -1 || (limit !== -1 && tags.value.length < limit)) {
     tags.value.push(tag) // add the new tag to the tags array
     newTag.value = '' // reset newTag
   }
@@ -90,9 +85,9 @@ const tagTextColor = computed(() => {
   }
 
   const hex = colorToHex(props.bgColor).replace('#', '')
-  const r = parseInt(hex.substring(0, 2), 16)
-  const g = parseInt(hex.substring(2, 4), 16)
-  const b = parseInt(hex.substring(4, 6), 16)
+  const r = Number.parseInt(hex.substring(0, 2), 16)
+  const g = Number.parseInt(hex.substring(2, 4), 16)
+  const b = Number.parseInt(hex.substring(4, 6), 16)
   const yiq = (r * 299 + g * 587 + b * 114) / 1000
 
   return yiq >= 128 || props.bgColor === '#f66b0e' ? 'white' : 'black'
@@ -136,7 +131,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="border border-gray-300 focus-within:ring-primary focus-within:outline-primary font-normal rounded-md shadow-sm w-full px-2 py-2 bg-white">
+    class="border border-gray-300 focus-within:ring-primary focus-within:outline-primary font-normal rounded-md shadow-sm w-full px-2 py-2 bg-white dark:bg-dark-surface dark:border-dark-border dark:text-dark-text">
     <div class="flex flex-wrap items-center gap-2 min-h-[30px]">
       <template v-for="(tag, index) in tags" :key="tag">
         <span
@@ -152,7 +147,7 @@ onMounted(() => {
         </span>
       </template>
       <input
-        class="flex-1 min-w-[120px] py-1 px-2 bg-transparent border-none outline-none text-sm disabled:bg-gray-50 disabled:text-gray-500"
+        class="flex-1 min-w-[120px] py-1 px-2 bg-transparent border-none outline-none text-sm disabled:bg-gray-50 disabled:text-gray-500 dark:text-dark-text dark:placeholder:text-dark-muted dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted"
         v-model="newTag"
         :disabled="tags.length >= Number(limit) && Number(limit) !== -1"
         @keydown.prevent.enter="addTag(newTag)"

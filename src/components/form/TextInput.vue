@@ -1,9 +1,9 @@
 <!--
  * Component: TextInput
- * Version: 1.0.2
+ * Version: 1.1.0
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2025-08-30
+ * Last Modified: 2026-01-30
  * Description: This is a component for input field.
 -->
 
@@ -149,11 +149,11 @@ const generateSizeClass = (): string => {
       "
       :class="[
         finalClass,
-        'py-2 px-3 bg-white border border-gray-300 focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500',
+        'py-2 px-3 bg-white border border-gray-300 focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500 dark:bg-dark-surface dark:border-dark-border dark:text-dark-text dark:placeholder:text-dark-muted dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted',
       ]" />
     <template v-if="hasIcon">
       <div
-        class="absolute inset-y-0 flex items-center text-black"
+        class="absolute inset-y-0 flex items-center text-black dark:text-dark-text"
         @click="$emit('iconClick')"
         :class="iconPosition === 'left' ? 'left-0 ps-3' : 'right-0 pe-3'">
         <slot></slot>
