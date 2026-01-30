@@ -1,6 +1,6 @@
 {
   "name": "yozora-vue",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "type": "module",
   "files": [
     "dist"
@@ -14,7 +14,8 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/yozora-vue.es.js",
       "require": "./dist/yozora-vue.umd.js"
-    }
+    },
+    "./style.css": "./dist/index.css"
   },
   "repository": {
     "type": "git",
