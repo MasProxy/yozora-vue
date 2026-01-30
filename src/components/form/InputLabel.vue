@@ -1,9 +1,9 @@
 <!--
  * Component: InputLabel
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2025-01-19
+ * Last Modified: 2026-01-30
  * Description: This is a component for render a input label.
 -->
 
@@ -29,7 +29,7 @@ withDefaults(defineProps<InputLabelProps>(), {
 </script>
 
 <template>
-  <label class="block font-medium text-sm text-gray-700">
+  <label class="block font-medium text-sm text-gray-700 dark:text-dark-text">
     <span v-if="value">{{ value }}</span>
     <span v-else><slot></slot></span>
     <template v-if="required">

@@ -1,9 +1,9 @@
 <!--
  * Component: BreadcrumbItem
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: MasProxy
  * Date Created: 2025-02-16
- * Last Modified: 2025-02-16
+ * Last Modified: 2026-01-30
  * Description: This is a component for render a breadcrumb item.
 -->
 
@@ -29,14 +29,14 @@ withDefaults(defineProps<BreadcrumbItemProps>(), {
       <div class="flex items-center">
         <template v-if="href === '#'">
           <span
-            class="hover:cursor-pointer text-sm font-medium text-gray-700 hover:text-primary">
+            class="hover:cursor-pointer text-sm font-medium text-gray-700 hover:text-primary dark:text-dark-text dark:hover:text-primary">
             {{ title }}
           </span>
         </template>
         <template v-else>
           <a
             :href="href"
-            class="hover:cursor-pointer text-sm font-medium text-gray-700 hover:text-primary">
+            class="hover:cursor-pointer text-sm font-medium text-gray-700 hover:text-primary dark:text-dark-text dark:hover:text-primary">
             {{ title }}
           </a>
         </template>
@@ -60,7 +60,7 @@ withDefaults(defineProps<BreadcrumbItemProps>(), {
             d="m1 9 4-4-4-4" />
         </svg>
         <span
-          class="hover:cursor-default ms-1 font-bold text-sm md:ms-2 dark:text-gray-400">
+          class="hover:cursor-default ms-1 font-bold text-sm md:ms-2 dark:text-dark-muted">
           {{ title }}
         </span>
       </div>
@@ -82,14 +82,14 @@ withDefaults(defineProps<BreadcrumbItemProps>(), {
         </svg>
         <template v-if="href === '#'">
           <span
-            class="hover:cursor-pointer ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
+            class="hover:cursor-pointer ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-dark-muted dark:hover:text-dark-text">
             {{ title }}
           </span>
         </template>
         <template v-else>
           <a
             :href="href"
-            class="hover:cursor-pointer ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
+            class="hover:cursor-pointer ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-dark-muted dark:hover:text-dark-text">
             {{ title }}
           </a>
         </template>

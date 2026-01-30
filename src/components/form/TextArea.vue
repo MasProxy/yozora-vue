@@ -1,9 +1,9 @@
 <!--
  * Component: TextArea
- * Version: 1.0.1
+ * Version: 1.1.0
  * Author: MasProxy
  * Date Created: 2025-02-19
- * Last Modified: 2025-04-03
+ * Last Modified: 2026-01-30
  * Description: This is a component for text area field.
 -->
 
@@ -35,7 +35,7 @@ defineEmits(['update:modelValue'])
 
 <template>
   <textarea
-    class="py-2 px-3 border border-gray-300 bg-white focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500"
+    class="py-2 px-3 border border-gray-300 bg-white focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500 dark:bg-dark-surface dark:border-dark-border dark:text-dark-text dark:placeholder:text-dark-muted dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted"
     v-bind="$attrs"
     @input="
       $emit('update:modelValue', ($event.target as HTMLInputElement).value)

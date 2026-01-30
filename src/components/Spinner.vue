@@ -1,21 +1,25 @@
 <!--
  * Component: Spinner
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: MasProxy
  * Date Created: 2025-02-23
- * Last Modified: 2025-02-23
+ * Last Modified: 2026-01-30
  * Description: This is a component for spinner.
 -->
 
 <script setup lang="ts">
-import { type Ref, ref, onBeforeMount } from 'vue'
+import { type Ref, ref, onBeforeMount, computed } from 'vue'
 
 interface SpinnerProps {
   size?: string
+  color?: string
+  fillClass?: string
 }
 
 const props = withDefaults(defineProps<SpinnerProps>(), {
   size: '8',
+  color: 'secondary',
+  fillClass: '',
 })
 
 const convertSizeToRem = (size: string): string => {
@@ -73,6 +77,24 @@ const setSize = () => {
 onBeforeMount(() => {
   setSize()
 })
+
+const fillClassMap: Record<string, string> = {
+  primary: 'fill-primary',
+  secondary: 'fill-secondary',
+  success: 'fill-success',
+  danger: 'fill-danger',
+  gray: 'fill-gray',
+  black: 'fill-black',
+  white: 'fill-white',
+}
+
+const finalFillClass = computed(() => {
+  if (props.fillClass) {
+    return props.fillClass
+  }
+
+  return fillClassMap[props.color ?? 'secondary'] ?? 'fill-secondary'
+})
 </script>
 
 <template>
@@ -81,7 +103,10 @@ onBeforeMount(() => {
       aria-hidden="true"
       :height="finalSize"
       :width="finalSize"
-      class="text-gray-200 animate-spin dark:text-gray-600 fill-secondary"
+      :class="[
+        'text-gray-200 animate-spin dark:text-dark-border',
+        finalFillClass,
+      ]"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

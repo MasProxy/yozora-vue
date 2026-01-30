@@ -1,9 +1,9 @@
 <!--
  * Component: Pagination
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: MasProxy
  * Date Created: 2024-02-12
- * Last Modified: 2025-02-12
+ * Last Modified: 2026-01-30
  * Description: This is a component for render a pagination.
 -->
 
@@ -40,7 +40,7 @@ const changePage = (label: string, url: string) => {
         <li class="cursor-pointer" @click="changePage(link.label, link.url)">
           <template v-if="link.label.toLowerCase().includes('next')">
             <div
-              class="flex items-center justify-center px-2 lg:px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">
+              class="flex items-center justify-center px-2 lg:px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-dark-surface dark:border-dark-border dark:text-dark-muted dark:hover:bg-dark-surface2 dark:hover:text-dark-text">
               <span class="sr-only">Next</span>
               <svg
                 class="w-2.5 h-2.5"
@@ -59,7 +59,7 @@ const changePage = (label: string, url: string) => {
           </template>
           <template v-else-if="link.label.toLowerCase().includes('previous')">
             <div
-              class="flex items-center justify-center px-2 lg:px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">
+              class="flex items-center justify-center px-2 lg:px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-dark-surface dark:border-dark-border dark:text-dark-muted dark:hover:bg-dark-surface2 dark:hover:text-dark-text">
               <span class="sr-only">Previous</span>
               <svg
                 class="w-2.5 h-2.5"
@@ -78,11 +78,11 @@ const changePage = (label: string, url: string) => {
           </template>
           <template v-else>
             <div
-              class="z-10 flex items-center justify-center hover:bg-blue-100 px-3 h-8 leading-tight border border-gray-300 hover:text-blue-700"
+              class="z-10 flex items-center justify-center hover:bg-blue-100 px-3 h-8 leading-tight border border-gray-300 hover:text-blue-700 dark:border-dark-border dark:hover:bg-dark-surface2 dark:hover:text-dark-text"
               :class="
                 currentPage.toString() === link.label
-                  ? 'bg-primary text-white'
-                  : 'bg-white'
+                  ? 'bg-primary text-white dark:bg-primary dark:text-white'
+                  : 'bg-white dark:bg-dark-surface dark:text-dark-text'
               ">
               {{ link.label }}
             </div>
