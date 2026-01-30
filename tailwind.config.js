@@ -2,6 +2,10 @@
 export default {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   darkMode: 'class',
+  // Disable Tailwind's preflight to avoid global resets overriding host apps
+  corePlugins: {
+    preflight: false,
+  },
   theme: {
     extend: {
       colors: {
