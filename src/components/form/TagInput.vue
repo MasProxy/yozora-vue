@@ -1,9 +1,9 @@
 <!--
  * Component: TagInput
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2026-01-30
+ * Last Modified: 2026-04-30
  * Description: This is a component for make a multiple value on input like a tag.
 -->
 
