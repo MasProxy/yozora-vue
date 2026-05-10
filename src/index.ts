@@ -20,8 +20,6 @@ export { default as Pagination } from './components/table/Pagination.vue'
 
 export { default as Spinner } from './components/Spinner.vue'
 
-import './style.css'
-
 import Button from './components/Button.vue'
 import Modal from './components/Modal.vue'
 import AutoCompleteInput from './components/form/AutoCompleteInput.vue'
