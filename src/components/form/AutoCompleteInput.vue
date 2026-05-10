@@ -77,17 +77,14 @@ const input: Ref<HTMLInputElement | null> = ref(null)
  * @returns {String}
  */
 const generateSizeClass = (): string => {
-  let result = ''
-
-  if (props.size === 'sm') {
-    result = 'text-sm h-[36px]'
-  } else if (props.size === 'md') {
-    result = 'text-base'
-  } else if (props.size === 'lg') {
-    result = 'text-lg'
+  switch (props.size) {
+    case 'sm':
+      return 'text-sm h-[36px]'
+    case 'lg':
+      return 'text-lg'
+    default:
+      return 'text-base'
   }
-
-  return result
 }
 
 /**
@@ -139,7 +136,7 @@ const handleBlur = () => {
       v-bind="$attrs"
       :value="
         typeof modelValue === 'object'
-          ? modelValue?.[optionLabel] ?? ''
+          ? (modelValue?.[optionLabel] ?? '')
           : modelValue
       "
       @focus="isSuggestionsVisible = true"
@@ -148,7 +145,7 @@ const handleBlur = () => {
       :class="[
         finalClass,
         isLinked || isRequesting ? 'pr-8 pl-3' : 'px-3',
-        'py-2 border bg-white border-gray-300 focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500 dark:bg-dark-surface dark:border-dark-border dark:text-dark-text dark:placeholder:text-dark-muted dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted',
+        'py-2 border bg-white border-gray-300 focus:ring-primary! focus:outline-primary! font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500 dark:bg-dark-surface dark:border-dark-border dark:text-dark-text dark:placeholder:text-dark-muted dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted',
       ]" />
     <div
       v-if="isRequesting"
@@ -176,14 +173,14 @@ const handleBlur = () => {
     <div
       v-if="isSuggestionsVisible && modelValue !== ''"
       class="absolute w-full bg-white border border-gray-300 rounded z-20 shadow-sm font-normal dark:bg-dark-surface dark:border-dark-border dark:text-dark-text">
-      <ul class="divide-y max-h-[250px] overflow-y-auto dark:divide-dark-border">
+      <ul class="divide-y max-h-62.5 overflow-y-auto dark:divide-dark-border">
         <template v-if="data.length > 0">
           <li
             v-for="(item, index) in data"
             :key="index"
             @mousedown.prevent="setValue(item)"
             class="pl-3 py-2 cursor-pointer hover:bg-slate-50 dark:hover:bg-dark-surface2">
-            {{ typeof item === 'object' ? item?.[optionLabel] ?? '' : item }}
+            {{ typeof item === 'object' ? (item?.[optionLabel] ?? '') : item }}
           </li>
         </template>
         <template v-else>
