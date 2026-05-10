@@ -4,6 +4,7 @@ export { default as Button } from './components/Button.vue'
 export { default as Modal } from './components/Modal.vue'
 
 export { default as AutoCompleteInput } from './components/form/AutoCompleteInput.vue'
+export { default as CheckboxInput } from './components/form/CheckboxInput.vue'
 export { default as TextArea } from './components/form/TextArea.vue'
 export { default as TextInput } from './components/form/TextInput.vue'
 export { default as InputLabel } from './components/form/InputLabel.vue'
@@ -23,6 +24,7 @@ export { default as Spinner } from './components/Spinner.vue'
 import Button from './components/Button.vue'
 import Modal from './components/Modal.vue'
 import AutoCompleteInput from './components/form/AutoCompleteInput.vue'
+import CheckboxInput from './components/form/CheckboxInput.vue'
 import TextArea from './components/form/TextArea.vue'
 import TextInput from './components/form/TextInput.vue'
 import InputLabel from './components/form/InputLabel.vue'
@@ -53,5 +55,6 @@ export default {
     app.component('Modal', Modal)
     app.component('Spinner', Spinner)
     app.component('AutoCompleteInput', AutoCompleteInput)
+    app.component('CheckboxInput', CheckboxInput)
   },
 }
