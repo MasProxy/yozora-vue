@@ -11,6 +11,7 @@ import TextArea from './components/form/TextArea.vue'
 import SelectInput from './components/form/SelectInput.vue'
 import TagInput from './components/form/TagInput.vue'
 import AutoCompleteInput from './components/form/AutoCompleteInput.vue'
+import CheckboxInput from './components/form/CheckboxInput.vue'
 import Table from './components/table/Table.vue'
 import TableHeader from './components/table/TableHeader.vue'
 import TableData from './components/table/TableData.vue'
@@ -24,30 +25,81 @@ function applyTheme(value: boolean) {
 onMounted(() => applyTheme(isDark.value))
 watch(isDark, applyTheme)
 
-const btnColors = ['primary', 'secondary', 'success', 'danger', 'gray', 'none'] as const
+const btnColors = [
+  'primary',
+  'secondary',
+  'success',
+  'danger',
+  'gray',
+  'none',
+] as const
 const btnSizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
 const btnRounded = ['none', 'sm', 'md', 'lg', 'full'] as const
 const inputSizes = ['sm', 'md', 'lg'] as const
 const spinnerSizes = Array.from({ length: 20 }, (_, i) => String(i + 1))
-const spinnerColors = ['primary', 'secondary', 'success', 'danger', 'gray', 'black', 'white'] as const
+const spinnerColors = [
+  'primary',
+  'secondary',
+  'success',
+  'danger',
+  'gray',
+  'black',
+  'white',
+] as const
 const modalSizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'] as const
 
-const btnCfg = reactive({ color: 'primary', size: 'md', rounded: 'md', outline: false, textonly: false, disabled: false })
+const btnCfg = reactive({
+  color: 'primary',
+  size: 'md',
+  rounded: 'md',
+  outline: false,
+  textonly: false,
+  disabled: false,
+})
 
 const inputValue = ref('')
-const inputCfg = reactive({ size: 'md' as 'sm' | 'md' | 'lg', hasIcon: false, iconPosition: 'right' as 'left' | 'right', isCurrency: false, isNumber: false, errorMessage: '', placeholder: 'Type here' })
+const inputCfg = reactive({
+  size: 'md' as 'sm' | 'md' | 'lg',
+  hasIcon: false,
+  iconPosition: 'right' as 'left' | 'right',
+  isCurrency: false,
+  isNumber: false,
+  errorMessage: '',
+  placeholder: 'Type here',
+})
 
 const areaValue = ref('')
 
 const selectValue = ref('option-1')
-const selectCfg = reactive({ small: false, disabled: false })
+const selectCfg = reactive({
+  size: 'md' as 'sm' | 'md' | 'lg',
+  disabled: false,
+})
 
 const tagsValue = ref<string[]>(['Vue', 'Tailwind'])
 const tagCfg = reactive({ limit: -1, bgColor: '#f66b0e' })
 
 const autoValue = ref('')
-const autoData = ref(['Buttons', 'Inputs', 'Tables', 'Modals', 'Breadcrumbs', 'Pagination'])
-const autoCfg = reactive({ errorMessage: '', isRequesting: false, isLinked: false })
+const autoData = ref([
+  'Buttons',
+  'Inputs',
+  'Tables',
+  'Modals',
+  'Breadcrumbs',
+  'Pagination',
+])
+const autoCfg = reactive({
+  errorMessage: '',
+  isRequesting: false,
+  isLinked: false,
+})
+
+const checkboxValue = ref(false)
+const checkboxCfg = reactive({
+  size: 'md' as 'sm' | 'md' | 'lg',
+  disabled: false,
+  errorMessage: '',
+})
 
 const tableRows = ref([
   { name: 'Yozora', role: 'UI Kit', status: 'Active' },
@@ -80,11 +132,16 @@ const modalSize = ref('md')
 
 <template>
   <div :class="isDark ? 'dark' : ''">
-    <div class="min-h-screen bg-white text-black dark:bg-dark-surface2 dark:text-dark-text">
-      <header class="px-6 py-6 border-b border-gray-200 dark:border-dark-border">
-        <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+    <div
+      class="min-h-screen bg-white text-black dark:bg-dark-surface2 dark:text-dark-text">
+      <header
+        class="px-6 py-6 border-b border-gray-200 dark:border-dark-border">
+        <div
+          class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 class="text-2xl font-semibold">Yozora UI — Component Playground</h1>
+            <h1 class="text-2xl font-semibold">
+              Yozora UI — Component Playground
+            </h1>
             <p class="text-sm text-gray-600 dark:text-dark-muted">
               Toggle controls to test every prop and state.
             </p>
@@ -101,23 +158,36 @@ const modalSize = ref('md')
       </header>
 
       <main class="px-6 py-8 space-y-10">
-
         <!-- Breadcrumb -->
         <section class="space-y-4">
-          <h2 class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">Breadcrumb</h2>
+          <h2
+            class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">
+            Breadcrumb
+          </h2>
           <div class="border rounded-lg p-4 dark:border-dark-border space-y-4">
             <Breadcrumb>
               <BreadcrumbItem title="Home" href="#" first />
               <BreadcrumbItem title="Library" href="#" />
               <BreadcrumbItem title="Components" current />
             </Breadcrumb>
-            <p class="text-xs text-gray-500">Uses <code>first</code>, <code>href</code>, and <code>current</code> props.</p>
+            <p class="text-xs text-gray-500">
+              Uses
+              <code>first</code>
+              ,
+              <code>href</code>
+              , and
+              <code>current</code>
+              props.
+            </p>
           </div>
         </section>
 
         <!-- Button -->
         <section class="space-y-4">
-          <h2 class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">Button</h2>
+          <h2
+            class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">
+            Button
+          </h2>
           <div class="border rounded-lg p-4 dark:border-dark-border space-y-4">
             <div class="flex flex-wrap gap-3 items-center">
               <Button v-bind="btnCfg">Button</Button>
@@ -125,32 +195,53 @@ const modalSize = ref('md')
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
               <label class="flex items-center gap-1.5">
                 <span class="text-gray-500">color:</span>
-                <select v-model="btnCfg.color" class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
-                  <option v-for="c in btnColors" :key="c" :value="c">{{ c }}</option>
+                <select
+                  v-model="btnCfg.color"
+                  class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
+                  <option v-for="c in btnColors" :key="c" :value="c">
+                    {{ c }}
+                  </option>
                 </select>
               </label>
               <label class="flex items-center gap-1.5">
                 <span class="text-gray-500">size:</span>
-                <select v-model="btnCfg.size" class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
-                  <option v-for="s in btnSizes" :key="s" :value="s">{{ s }}</option>
+                <select
+                  v-model="btnCfg.size"
+                  class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
+                  <option v-for="s in btnSizes" :key="s" :value="s">
+                    {{ s }}
+                  </option>
                 </select>
               </label>
               <label class="flex items-center gap-1.5">
                 <span class="text-gray-500">rounded:</span>
-                <select v-model="btnCfg.rounded" class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
-                  <option v-for="r in btnRounded" :key="r" :value="r">{{ r }}</option>
+                <select
+                  v-model="btnCfg.rounded"
+                  class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
+                  <option v-for="r in btnRounded" :key="r" :value="r">
+                    {{ r }}
+                  </option>
                 </select>
               </label>
               <label class="flex items-center gap-1">
-                <input type="checkbox" v-model="btnCfg.outline" class="accent-primary" />
+                <input
+                  type="checkbox"
+                  v-model="btnCfg.outline"
+                  class="accent-primary" />
                 outline
               </label>
               <label class="flex items-center gap-1">
-                <input type="checkbox" v-model="btnCfg.textonly" class="accent-primary" />
+                <input
+                  type="checkbox"
+                  v-model="btnCfg.textonly"
+                  class="accent-primary" />
                 textonly
               </label>
               <label class="flex items-center gap-1">
-                <input type="checkbox" v-model="btnCfg.disabled" class="accent-primary" />
+                <input
+                  type="checkbox"
+                  v-model="btnCfg.disabled"
+                  class="accent-primary" />
                 disabled
               </label>
             </div>
@@ -159,23 +250,36 @@ const modalSize = ref('md')
 
         <!-- Spinner -->
         <section class="space-y-4">
-          <h2 class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">Spinner</h2>
+          <h2
+            class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">
+            Spinner
+          </h2>
           <div class="border rounded-lg p-4 dark:border-dark-border space-y-4">
             <div class="flex flex-wrap items-center gap-4">
               <Spinner v-bind="spinnerCfg" />
-              <span class="text-sm text-gray-500">size={{ spinnerCfg.size }} color={{ spinnerCfg.color }}</span>
+              <span class="text-sm text-gray-500">
+                size={{ spinnerCfg.size }} color={{ spinnerCfg.color }}
+              </span>
             </div>
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
               <label class="flex items-center gap-1.5">
                 <span class="text-gray-500">size:</span>
-                <select v-model="spinnerCfg.size" class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
-                  <option v-for="s in spinnerSizes" :key="s" :value="s">{{ s }}</option>
+                <select
+                  v-model="spinnerCfg.size"
+                  class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
+                  <option v-for="s in spinnerSizes" :key="s" :value="s">
+                    {{ s }}
+                  </option>
                 </select>
               </label>
               <label class="flex items-center gap-1.5">
                 <span class="text-gray-500">color:</span>
-                <select v-model="spinnerCfg.color" class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
-                  <option v-for="c in spinnerColors" :key="c" :value="c">{{ c }}</option>
+                <select
+                  v-model="spinnerCfg.color"
+                  class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
+                  <option v-for="c in spinnerColors" :key="c" :value="c">
+                    {{ c }}
+                  </option>
                 </select>
               </label>
             </div>
@@ -184,7 +288,10 @@ const modalSize = ref('md')
 
         <!-- TextInput -->
         <section class="space-y-4">
-          <h2 class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">TextInput</h2>
+          <h2
+            class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">
+            TextInput
+          </h2>
           <div class="border rounded-lg p-4 dark:border-dark-border space-y-4">
             <div class="max-w-sm space-y-2">
               <InputLabel value="TextInput" />
@@ -194,35 +301,56 @@ const modalSize = ref('md')
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
               <label class="flex items-center gap-1.5">
                 <span class="text-gray-500">size:</span>
-                <select v-model="inputCfg.size" class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
-                  <option v-for="s in inputSizes" :key="s" :value="s">{{ s }}</option>
+                <select
+                  v-model="inputCfg.size"
+                  class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
+                  <option v-for="s in inputSizes" :key="s" :value="s">
+                    {{ s }}
+                  </option>
                 </select>
               </label>
               <label class="flex items-center gap-1">
-                <input type="checkbox" v-model="inputCfg.isCurrency" class="accent-primary" />
+                <input
+                  type="checkbox"
+                  v-model="inputCfg.isCurrency"
+                  class="accent-primary" />
                 isCurrency
               </label>
               <label class="flex items-center gap-1">
-                <input type="checkbox" v-model="inputCfg.isNumber" class="accent-primary" />
+                <input
+                  type="checkbox"
+                  v-model="inputCfg.isNumber"
+                  class="accent-primary" />
                 isNumber
               </label>
               <label class="flex items-center gap-1">
-                <input type="checkbox" v-model="inputCfg.hasIcon" class="accent-primary" />
+                <input
+                  type="checkbox"
+                  v-model="inputCfg.hasIcon"
+                  class="accent-primary" />
                 hasIcon
               </label>
               <template v-if="inputCfg.hasIcon">
                 <label class="flex items-center gap-1.5">
                   <span class="text-gray-500">iconPosition:</span>
-                  <select v-model="inputCfg.iconPosition" class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
+                  <select
+                    v-model="inputCfg.iconPosition"
+                    class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
                     <option value="left">left</option>
                     <option value="right">right</option>
                   </select>
                 </label>
-                <span class="text-xs text-gray-400 italic">(slot content shows here)</span>
+                <span class="text-xs text-gray-400 italic">
+                  (slot content shows here)
+                </span>
               </template>
               <label class="flex items-center gap-1.5">
                 <span class="text-gray-500">error:</span>
-                <input type="text" v-model="inputCfg.errorMessage" placeholder="leave empty for none" class="border rounded px-2 py-1 text-sm w-40 dark:bg-dark-surface dark:border-dark-border" />
+                <input
+                  type="text"
+                  v-model="inputCfg.errorMessage"
+                  placeholder="leave empty for none"
+                  class="border rounded px-2 py-1 text-sm w-40 dark:bg-dark-surface dark:border-dark-border" />
               </label>
             </div>
           </div>
@@ -230,20 +358,28 @@ const modalSize = ref('md')
 
         <!-- TextArea -->
         <section class="space-y-4">
-          <h2 class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">TextArea</h2>
+          <h2
+            class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">
+            TextArea
+          </h2>
           <div class="border rounded-lg p-4 dark:border-dark-border space-y-4">
             <div class="max-w-sm space-y-2">
               <InputLabel value="TextArea" />
               <TextArea v-model="areaValue" rows="3" />
               <p class="text-xs text-gray-500">value: "{{ areaValue }}"</p>
             </div>
-            <p class="text-xs text-gray-500">Native textarea — no props to toggle.</p>
+            <p class="text-xs text-gray-500">
+              Native textarea — no props to toggle.
+            </p>
           </div>
         </section>
 
         <!-- SelectInput -->
         <section class="space-y-4">
-          <h2 class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">SelectInput</h2>
+          <h2
+            class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">
+            SelectInput
+          </h2>
           <div class="border rounded-lg p-4 dark:border-dark-border space-y-4">
             <div class="max-w-xs space-y-2">
               <InputLabel value="SelectInput" />
@@ -255,12 +391,21 @@ const modalSize = ref('md')
               <p class="text-xs text-gray-500">selected: "{{ selectValue }}"</p>
             </div>
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-              <label class="flex items-center gap-1">
-                <input type="checkbox" v-model="selectCfg.small" class="accent-primary" />
-                small
+              <label class="flex items-center gap-1.5">
+                <span class="text-gray-500">size:</span>
+                <select
+                  v-model="selectCfg.size"
+                  class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
+                  <option v-for="s in inputSizes" :key="s" :value="s">
+                    {{ s }}
+                  </option>
+                </select>
               </label>
               <label class="flex items-center gap-1">
-                <input type="checkbox" v-model="selectCfg.disabled" class="accent-primary" />
+                <input
+                  type="checkbox"
+                  v-model="selectCfg.disabled"
+                  class="accent-primary" />
                 disabled
               </label>
             </div>
@@ -269,23 +414,41 @@ const modalSize = ref('md')
 
         <!-- TagInput -->
         <section class="space-y-4">
-          <h2 class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">TagInput</h2>
+          <h2
+            class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">
+            TagInput
+          </h2>
           <div class="border rounded-lg p-4 dark:border-dark-border space-y-4">
             <div class="max-w-md space-y-2">
               <InputLabel value="TagInput" />
-              <TagInput v-model="tagsValue" v-bind="tagCfg" :placeholder="tagCfg.limit !== -1 ? `Max ${tagCfg.limit} tags` : 'Add tags'" />
-              <p class="text-xs text-gray-500">tags: {{ JSON.stringify(tagsValue) }}</p>
+              <TagInput
+                v-model="tagsValue"
+                v-bind="tagCfg"
+                :placeholder="
+                  tagCfg.limit !== -1 ? `Max ${tagCfg.limit} tags` : 'Add tags'
+                " />
+              <p class="text-xs text-gray-500">
+                tags: {{ JSON.stringify(tagsValue) }}
+              </p>
             </div>
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
               <label class="flex items-center gap-1.5">
                 <span class="text-gray-500">limit:</span>
-                <input type="number" v-model.number="tagCfg.limit" class="border rounded px-2 py-1 text-sm w-20 dark:bg-dark-surface dark:border-dark-border" />
+                <input
+                  type="number"
+                  v-model.number="tagCfg.limit"
+                  class="border rounded px-2 py-1 text-sm w-20 dark:bg-dark-surface dark:border-dark-border" />
                 <span class="text-xs text-gray-400">(-1 = unlimited)</span>
               </label>
               <label class="flex items-center gap-1.5">
                 <span class="text-gray-500">bgColor:</span>
-                <input type="text" v-model="tagCfg.bgColor" class="border rounded px-2 py-1 text-sm w-28 dark:bg-dark-surface dark:border-dark-border" />
-                <span class="w-5 h-5 rounded inline-block border" :style="{ background: tagCfg.bgColor }"></span>
+                <input
+                  type="text"
+                  v-model="tagCfg.bgColor"
+                  class="border rounded px-2 py-1 text-sm w-28 dark:bg-dark-surface dark:border-dark-border" />
+                <span
+                  class="w-5 h-5 rounded inline-block border"
+                  :style="{ background: tagCfg.bgColor }"></span>
               </label>
             </div>
           </div>
@@ -293,25 +456,86 @@ const modalSize = ref('md')
 
         <!-- AutoCompleteInput -->
         <section class="space-y-4">
-          <h2 class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">AutoCompleteInput</h2>
+          <h2
+            class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">
+            AutoCompleteInput
+          </h2>
           <div class="border rounded-lg p-4 dark:border-dark-border space-y-4">
             <div class="max-w-sm space-y-2">
               <InputLabel value="AutoCompleteInput" />
-              <AutoCompleteInput v-model="autoValue" :data="autoData" v-bind="autoCfg" no-data-message="No results" placeholder="Search..." />
+              <AutoCompleteInput
+                v-model="autoValue"
+                :data="autoData"
+                v-bind="autoCfg"
+                no-data-message="No results"
+                placeholder="Search..." />
               <p class="text-xs text-gray-500">value: "{{ autoValue }}"</p>
             </div>
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
               <label class="flex items-center gap-1">
-                <input type="checkbox" v-model="autoCfg.isRequesting" class="accent-primary" />
+                <input
+                  type="checkbox"
+                  v-model="autoCfg.isRequesting"
+                  class="accent-primary" />
                 isRequesting
               </label>
               <label class="flex items-center gap-1">
-                <input type="checkbox" v-model="autoCfg.isLinked" class="accent-primary" />
+                <input
+                  type="checkbox"
+                  v-model="autoCfg.isLinked"
+                  class="accent-primary" />
                 isLinked
               </label>
               <label class="flex items-center gap-1.5">
                 <span class="text-gray-500">error:</span>
-                <input type="text" v-model="autoCfg.errorMessage" placeholder="leave empty for none" class="border rounded px-2 py-1 text-sm w-40 dark:bg-dark-surface dark:border-dark-border" />
+                <input
+                  type="text"
+                  v-model="autoCfg.errorMessage"
+                  placeholder="leave empty for none"
+                  class="border rounded px-2 py-1 text-sm w-40 dark:bg-dark-surface dark:border-dark-border" />
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- CheckboxInput -->
+        <section class="space-y-4">
+          <h2
+            class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">
+            CheckboxInput
+          </h2>
+          <div class="border rounded-lg p-4 dark:border-dark-border space-y-4">
+            <div class="max-w-xs space-y-2">
+              <CheckboxInput v-model="checkboxValue" v-bind="checkboxCfg">
+                Accept terms and conditions
+              </CheckboxInput>
+              <p class="text-xs text-gray-500">checked: {{ checkboxValue }}</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+              <label class="flex items-center gap-1.5">
+                <span class="text-gray-500">size:</span>
+                <select
+                  v-model="checkboxCfg.size"
+                  class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
+                  <option v-for="s in inputSizes" :key="s" :value="s">
+                    {{ s }}
+                  </option>
+                </select>
+              </label>
+              <label class="flex items-center gap-1">
+                <input
+                  type="checkbox"
+                  v-model="checkboxCfg.disabled"
+                  class="accent-primary" />
+                disabled
+              </label>
+              <label class="flex items-center gap-1.5">
+                <span class="text-gray-500">error:</span>
+                <input
+                  type="text"
+                  v-model="checkboxCfg.errorMessage"
+                  placeholder="leave empty for none"
+                  class="border rounded px-2 py-1 text-sm w-40 dark:bg-dark-surface dark:border-dark-border" />
               </label>
             </div>
           </div>
@@ -319,34 +543,62 @@ const modalSize = ref('md')
 
         <!-- Table -->
         <section class="space-y-4">
-          <h2 class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">Table</h2>
+          <h2
+            class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">
+            Table
+          </h2>
           <div class="border rounded-lg p-4 dark:border-dark-border space-y-4">
-            <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-dark-border">
+            <div
+              class="overflow-x-auto rounded-lg border border-gray-200 dark:border-dark-border">
               <Table class="w-full" :borderless="tableCfg.borderless">
                 <thead>
                   <tr>
-                    <TableHeader :bg-color="tableCfg.headerBgColor" :borderless="tableCfg.borderless">Name</TableHeader>
-                    <TableHeader :bg-color="tableCfg.headerBgColor" :borderless="tableCfg.borderless">Role</TableHeader>
-                    <TableHeader :bg-color="tableCfg.headerBgColor" :borderless="tableCfg.borderless">Status</TableHeader>
+                    <TableHeader
+                      :bg-color="tableCfg.headerBgColor"
+                      :borderless="tableCfg.borderless">
+                      Name
+                    </TableHeader>
+                    <TableHeader
+                      :bg-color="tableCfg.headerBgColor"
+                      :borderless="tableCfg.borderless">
+                      Role
+                    </TableHeader>
+                    <TableHeader
+                      :bg-color="tableCfg.headerBgColor"
+                      :borderless="tableCfg.borderless">
+                      Status
+                    </TableHeader>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="row in tableRows" :key="row.name">
-                    <TableData :borderless="tableCfg.borderless">{{ row.name }}</TableData>
-                    <TableData :borderless="tableCfg.borderless">{{ row.role }}</TableData>
-                    <TableData :borderless="tableCfg.borderless">{{ row.status }}</TableData>
+                    <TableData :borderless="tableCfg.borderless">
+                      {{ row.name }}
+                    </TableData>
+                    <TableData :borderless="tableCfg.borderless">
+                      {{ row.role }}
+                    </TableData>
+                    <TableData :borderless="tableCfg.borderless">
+                      {{ row.status }}
+                    </TableData>
                   </tr>
                 </tbody>
               </Table>
             </div>
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
               <label class="flex items-center gap-1">
-                <input type="checkbox" v-model="tableCfg.borderless" class="accent-primary" />
+                <input
+                  type="checkbox"
+                  v-model="tableCfg.borderless"
+                  class="accent-primary" />
                 borderless
               </label>
               <label class="flex items-center gap-1.5">
                 <span class="text-gray-500">header bgColor:</span>
-                <input type="text" v-model="tableCfg.headerBgColor" class="border rounded px-2 py-1 text-sm w-28 dark:bg-dark-surface dark:border-dark-border" />
+                <input
+                  type="text"
+                  v-model="tableCfg.headerBgColor"
+                  class="border rounded px-2 py-1 text-sm w-28 dark:bg-dark-surface dark:border-dark-border" />
               </label>
             </div>
           </div>
@@ -354,13 +606,20 @@ const modalSize = ref('md')
 
         <!-- Pagination -->
         <section class="space-y-4">
-          <h2 class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">Pagination</h2>
+          <h2
+            class="text-lg font-semibold border-b pb-1 border-gray-200 dark:border-dark-border">
+            Pagination
+          </h2>
           <div class="border rounded-lg p-4 dark:border-dark-border space-y-4">
-            <Pagination :pagination="paginationItems" :current-page="currentPage" @change-page="onPageChange" />
-            <p class="text-xs text-gray-500" v-if="paginationLog">{{ paginationLog }} | currentPage: {{ currentPage }}</p>
+            <Pagination
+              :pagination="paginationItems"
+              :current-page="currentPage"
+              @change-page="onPageChange" />
+            <p class="text-xs text-gray-500" v-if="paginationLog">
+              {{ paginationLog }} | currentPage: {{ currentPage }}
+            </p>
           </div>
         </section>
-
       </main>
     </div>
   </div>
@@ -371,7 +630,9 @@ const modalSize = ref('md')
         <h3 class="text-lg font-semibold">Modal Preview</h3>
         <label class="flex items-center gap-1.5 text-sm font-normal ml-auto">
           <span class="text-gray-500">size:</span>
-          <select v-model="modalSize" class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
+          <select
+            v-model="modalSize"
+            class="border rounded px-2 py-1 text-sm dark:bg-dark-surface dark:border-dark-border">
             <option v-for="s in modalSizes" :key="s" :value="s">{{ s }}</option>
           </select>
         </label>

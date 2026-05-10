@@ -8,24 +8,44 @@
 -->
 
 <script setup lang="ts">
+import { computed } from 'vue'
+
 /**
  * Props for the SelectInput component.
  * @prop {string} modelValue - The model value of the select input. Default is undefined.
- * @prop {boolean} small - The small state of the select input. Default is false.
+ * @prop {string} size - The size of the select input. Default is 'md'.
+ * @prop {boolean} small - (deprecated) Use `size="sm"` instead.
+ * @prop {boolean} disabled - The disabled state of the select input. Default is false.
  */
 interface SelectInputProps {
   modelValue: string | undefined | number
+  size?: 'sm' | 'md' | 'lg'
+  /** @deprecated Use `size="sm"` instead. */
   small?: boolean
   disabled?: boolean
 }
 
 const props = withDefaults(defineProps<SelectInputProps>(), {
   modelValue: undefined,
+  size: 'md',
   small: false,
   disabled: false,
 })
 
 defineEmits(['update:modelValue'])
+
+const sizeClass = computed(() => {
+  const effectiveSize =
+    props.size === 'md' ? (props.small ? 'sm' : 'md') : props.size
+  switch (effectiveSize) {
+    case 'sm':
+      return 'h-[36px]'
+    case 'lg':
+      return 'h-[48px]'
+    default:
+      return 'h-[42px]'
+  }
+})
 </script>
 
 <template>
@@ -38,7 +58,7 @@ defineEmits(['update:modelValue'])
     :disabled="disabled"
     :class="[
       'yozora-select appearance-none pr-7 px-2 bg-white text-sm font-normal border border-gray-300 focus:border-primary focus-visible:outline-primary rounded-md block min-w-fit disabled:bg-gray-50 disabled:text-gray-500 dark:bg-dark-surface dark:border-dark-border dark:text-dark-text dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted',
-      small ? 'h-[36px]' : 'h-[42px]',
+      sizeClass,
     ]">
     <slot></slot>
   </select>
