@@ -8,7 +8,7 @@
 -->
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 
 defineOptions({
   inheritAttrs: false,
@@ -31,8 +31,8 @@ interface TextInputProps {
   isCurrency?: boolean
   isNumber?: boolean
   hasIcon?: boolean
-  iconPosition?: string
-  size?: string
+  iconPosition?: 'left' | 'right'
+  size?: 'sm' | 'md' | 'lg'
 }
 
 const props = withDefaults(defineProps<TextInputProps>(), {
@@ -45,98 +45,52 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   size: 'md',
 })
 
-/**
- * Emits the following events:
- *
- * - `update:modelValue`: Emitted when the model value is updated.
- * - `iconClick`: Emitted when the icon is clicked.
- * - `useDebounce`: Emitted to indicate the use of debounce functionality.
- */
-const emit = defineEmits(['update:modelValue', 'iconClick', 'useDebounce'])
+const emit = defineEmits(['update:modelValue', 'iconClick'])
 
-/**
- * ANCHOR - function for validate a value
- */
-const validateValue = (value: string) => {
+function stripNonDigits(value: string): string {
+  return value.replaceAll(/\D/g, '').replace(/^0+(?!$)/, '')
+}
+
+function toCurrency(value: string): string {
+  const digits = stripNonDigits(value)
+  if (!digits) return ''
+  return digits.replaceAll(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
+
+function handleInput(event: Event): void {
+  const el = event.target as HTMLInputElement | null
+  if (!el) return
+
+  const raw = el.value
+  let formatted: string
+
   if (props.isCurrency) {
-    emit('update:modelValue', validateCurrency(value))
+    formatted = toCurrency(raw)
   } else if (props.isNumber) {
-    emit('update:modelValue', validateNumber(value))
+    formatted = stripNonDigits(raw)
   } else {
-    emit('update:modelValue', value)
-  }
-}
-
-/**
- * ANCHOR - function for validate a number
- */
-const validateNumber = (value: string): string => {
-  let tempValue = value.replace(/\D/g, '')
-
-  tempValue = tempValue.replace(/^0+(?!$)/, '')
-
-  return tempValue
-}
-
-/**
- * ANCHOR - function for validate a currency
- */
-const validateCurrency = (value: string): string => {
-  let tempValue = value.replace(/\D/g, '')
-
-  // Remove leading zeros except for single '0'
-  tempValue = tempValue.replace(/^0+(?!$)/, '')
-
-  // Format with commas if not empty
-  if (tempValue !== '') {
-    tempValue = tempValue.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    formatted = raw
   }
 
-  return tempValue
+  if (formatted !== raw) el.value = formatted
+  emit('update:modelValue', formatted)
 }
 
-watch(
-  () => props.modelValue,
-  (newValue) => {
-    validateValue(newValue)
-  },
-  { deep: true }
-)
-
-/**
- * ANCHOR - a final class of a text input component
- * @returns {String}
- */
-const finalClass = computed<string>(() => {
-  let result = ''
-
-  if (props.hasIcon && props.iconPosition === 'left') {
-    result = 'pl-9'
-  } else if (props.hasIcon && props.iconPosition === 'right') {
-    result = 'pr-9'
-  }
-
-  result += ` ${generateSizeClass()}`
-  return result
+const paddingClass = computed(() => {
+  if (!props.hasIcon) return ''
+  return props.iconPosition === 'left' ? 'pl-9' : 'pr-9'
 })
 
-/**
- * ANCHOR - function for generate a size class
- * @returns {String}
- */
-const generateSizeClass = (): string => {
-  let result = ''
-
-  if (props.size === 'sm') {
-    result = 'text-sm h-[36px]'
-  } else if (props.size === 'md') {
-    result = 'text-base'
-  } else if (props.size === 'lg') {
-    result = 'text-lg'
+const sizeClass = computed(() => {
+  switch (props.size) {
+    case 'sm':
+      return 'text-sm h-[36px]'
+    case 'lg':
+      return 'text-lg'
+    default:
+      return 'text-base'
   }
-
-  return result
-}
+})
 </script>
 
 <template>
@@ -144,22 +98,21 @@ const generateSizeClass = (): string => {
     <input
       v-bind="$attrs"
       :value="modelValue"
-      @input="
-        $emit('update:modelValue', ($event.target as HTMLInputElement).value)
-      "
       :class="[
-        finalClass,
-        'py-2 px-3 bg-white border border-gray-300 focus:!ring-primary focus:!outline-primary font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500 dark:bg-dark-surface dark:border-dark-border dark:text-dark-text dark:placeholder:text-dark-muted dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted',
-      ]" />
+        paddingClass,
+        sizeClass,
+        'py-2 px-3 bg-white border border-gray-300 focus:ring-primary! focus:outline-primary! font-normal rounded-md shadow-sm block w-full disabled:bg-gray-50 disabled:text-gray-500 dark:bg-dark-surface dark:border-dark-border dark:text-dark-text dark:placeholder:text-dark-muted dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted',
+      ]"
+      @input="handleInput" />
     <template v-if="hasIcon">
       <div
         class="absolute inset-y-0 flex items-center text-black dark:text-dark-text"
-        @click="$emit('iconClick')"
-        :class="iconPosition === 'left' ? 'left-0 ps-3' : 'right-0 pe-3'">
-        <slot></slot>
+        :class="iconPosition === 'left' ? 'left-0 ps-3' : 'right-0 pe-3'"
+        @click="$emit('iconClick')">
+        <slot />
       </div>
     </template>
-    <template v-if="errorMessage !== ''">
+    <template v-if="errorMessage">
       <div class="text-xs text-danger font-medium mt-1">
         {{ errorMessage }}
       </div>

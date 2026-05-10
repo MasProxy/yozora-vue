@@ -1,14 +1,14 @@
 <!--
  * Component: Button
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: MasProxy
  * Date Created: 2024-06-10
- * Last Modified: 2026-01-30
+ * Last Modified: 2026-04-30
  * Description: This is a component for render a button.
 -->
 
 <script setup lang="ts">
-import { ref, onBeforeMount, type Ref } from 'vue'
+import { computed } from 'vue'
 
 defineOptions({
   inheritAttrs: false,
@@ -26,12 +26,12 @@ defineOptions({
  */
 
 interface ButtonProps {
-  size?: string // required
-  color?: string // optional
-  rounded?: string // optional
-  outline?: boolean // optional
-  textonly?: boolean // optional
-  href?: string // optional
+  size?: string
+  color?: string
+  rounded?: string
+  outline?: boolean
+  textonly?: boolean
+  href?: string
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -43,138 +43,75 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   href: '',
 })
 
-const finalClass: Ref<string> = ref(
-  'min-w-[80px] px-2 flex justify-center items-center font-medium disabled:cursor-default hover:cursor-pointer'
-)
+const finalClass = computed(() => {
+  let cls = 'min-w-[80px] px-2 flex justify-center items-center font-medium disabled:cursor-default hover:cursor-pointer'
 
-/**
- * ANCHOR - function for initialize a button size
- */
-const initializeSize = (): void => {
   switch (props.size) {
-    case 'xs':
-      finalClass.value += ' h-[32px] text-xs'
-      break
-    case 'sm':
-      finalClass.value += ' h-[36px] text-sm'
-      break
-    case 'md':
-      finalClass.value += ' h-[40px] text-base'
-      break
-    case 'lg':
-      finalClass.value += ' h-[48px] text-base'
-      break
-    case 'xl':
-      finalClass.value += ' h-[52px] text-base'
-      break
-    default:
-      break
+    case 'xs': cls += ' h-[32px] text-xs'; break
+    case 'sm': cls += ' h-[36px] text-sm'; break
+    case 'md': cls += ' h-[40px] text-base'; break
+    case 'lg': cls += ' h-[48px] text-base'; break
+    case 'xl': cls += ' h-[52px] text-base'; break
   }
-}
 
-/**
- * ANCHOR - function for initialize a button color
- */
-const initializeColor = (): void => {
   if (props.outline) {
     switch (props.color) {
       case 'primary':
-        finalClass.value +=
-          ' bg-white border border-primary hover:bg-primary hover:text-white text-primary disabled:border-gray-400 disabled:bg-white disabled:text-gray-400 dark:bg-dark-surface dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-white dark:disabled:border-dark-border dark:disabled:bg-dark-surface dark:disabled:text-dark-muted'
+        cls += ' bg-white border border-primary hover:bg-primary hover:text-white text-primary disabled:border-gray-400 disabled:bg-white disabled:text-gray-400 dark:bg-dark-surface dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-white dark:disabled:border-dark-border dark:disabled:bg-dark-surface dark:disabled:text-dark-muted'
         break
       case 'secondary':
-        finalClass.value +=
-          ' bg-white border border-secondary hover:bg-secondary text-secondary hover:text-white disabled:border-gray-400 disabled:bg-white disabled:text-gray-400 dark:bg-dark-surface dark:border-secondary dark:text-secondary dark:hover:bg-secondary dark:hover:text-white dark:disabled:border-dark-border dark:disabled:bg-dark-surface dark:disabled:text-dark-muted'
+        cls += ' bg-white border border-secondary hover:bg-secondary text-secondary hover:text-white disabled:border-gray-400 disabled:bg-white disabled:text-gray-400 dark:bg-dark-surface dark:border-secondary dark:text-secondary dark:hover:bg-secondary dark:hover:text-white dark:disabled:border-dark-border dark:disabled:bg-dark-surface dark:disabled:text-dark-muted'
         break
       case 'success':
-        finalClass.value +=
-          ' bg-white border border-success hover:bg-success text-success hover:text-white disabled:border-gray-400 disabled:bg-white disabled:text-gray-400 dark:bg-dark-surface dark:border-success dark:text-success dark:hover:bg-success dark:hover:text-white dark:disabled:border-dark-border dark:disabled:bg-dark-surface dark:disabled:text-dark-muted'
+        cls += ' bg-white border border-success hover:bg-success text-success hover:text-white disabled:border-gray-400 disabled:bg-white disabled:text-gray-400 dark:bg-dark-surface dark:border-success dark:text-success dark:hover:bg-success dark:hover:text-white dark:disabled:border-dark-border dark:disabled:bg-dark-surface dark:disabled:text-dark-muted'
         break
       case 'danger':
-        finalClass.value +=
-          ' bg-white border border-danger hover:bg-danger hover:text-white text-danger disabled:border-gray-400 disabled:bg-white disabled:text-gray-400 dark:bg-dark-surface dark:border-danger dark:text-danger dark:hover:bg-danger dark:hover:text-white dark:disabled:border-dark-border dark:disabled:bg-dark-surface dark:disabled:text-dark-muted'
+        cls += ' bg-white border border-danger hover:bg-danger hover:text-white text-danger disabled:border-gray-400 disabled:bg-white disabled:text-gray-400 dark:bg-dark-surface dark:border-danger dark:text-danger dark:hover:bg-danger dark:hover:text-white dark:disabled:border-dark-border dark:disabled:bg-dark-surface dark:disabled:text-dark-muted'
         break
       case 'gray':
-        finalClass.value += ` bg-white border border-gray-500 text-gray-500 hover:border-gray-600 hover:bg-blue-50 disabled:border-gray-400 disabled:bg-white disabled:text-gray-400`
-        finalClass.value +=
-          ' dark:bg-dark-surface dark:border-dark-border dark:text-dark-text dark:hover:bg-dark-surface2 dark:disabled:border-dark-border dark:disabled:bg-dark-surface dark:disabled:text-dark-muted'
-        break
-      default:
+        cls += ' bg-white border border-gray-500 text-gray-500 hover:border-gray-600 hover:bg-blue-50 disabled:border-gray-400 disabled:bg-white disabled:text-gray-400 dark:bg-dark-surface dark:border-dark-border dark:text-dark-text dark:hover:bg-dark-surface2 dark:disabled:border-dark-border dark:disabled:bg-dark-surface dark:disabled:text-dark-muted'
         break
     }
   } else if (props.textonly) {
     switch (props.color) {
-      case 'primary':
-        finalClass.value += ' text-primary dark:text-primary'
-        break
-      case 'secondary':
-        finalClass.value += ' text-secondary dark:text-secondary'
-        break
-      case 'success':
-        finalClass.value += ' text-success dark:text-success'
-        break
-      case 'danger':
-        finalClass.value += ' text-danger dark:text-danger'
-        break
-      default:
-        break
+      case 'primary': cls += ' text-primary dark:text-primary'; break
+      case 'secondary': cls += ' text-secondary dark:text-secondary'; break
+      case 'success': cls += ' text-success dark:text-success'; break
+      case 'danger': cls += ' text-danger dark:text-danger'; break
+      case 'gray': cls += ' text-gray dark:text-gray'; break
     }
   } else {
     switch (props.color) {
       case 'primary':
-        finalClass.value +=
-          ' bg-primary hover:bg-primary-hover text-white disabled:bg-gray-200 disabled:text-black dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted'
+        cls += ' bg-primary hover:bg-primary-hover text-white disabled:bg-gray-200 disabled:text-black dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted'
         break
       case 'secondary':
-        finalClass.value +=
-          ' bg-secondary hover:bg-secondary-hover text-white disabled:bg-gray-200 disabled:text-black dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted'
+        cls += ' bg-secondary hover:bg-secondary-hover text-white disabled:bg-gray-200 disabled:text-black dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted'
         break
       case 'success':
-        finalClass.value +=
-          ' bg-success hover:bg-success-hover text-white disabled:bg-gray-200 disabled:text-black dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted'
+        cls += ' bg-success hover:bg-success-hover text-white disabled:bg-gray-200 disabled:text-black dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted'
         break
       case 'danger':
-        finalClass.value +=
-          ' bg-danger hover:bg-danger-hover text-white disabled:bg-gray-200 disabled:text-black dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted'
+        cls += ' bg-danger hover:bg-danger-hover text-white disabled:bg-gray-200 disabled:text-black dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted'
+        break
+      case 'gray':
+        cls += ' bg-gray hover:bg-gray-second text-black disabled:bg-gray-200 disabled:text-black dark:disabled:bg-dark-surface2 dark:disabled:text-dark-muted'
         break
       case 'none':
-        finalClass.value += ' bg-white border-black'
-        break
-      default:
+        cls += ' bg-white border-black'
         break
     }
   }
-}
 
-/**
- * ANCHOR - function for initialize a button corner
- */
-const initializeCorner = (): void => {
   switch (props.rounded) {
-    case 'none':
-      finalClass.value += ' rounded-none'
-      break
-    case 'sm':
-      finalClass.value += ' rounded-[3px]'
-      break
-    case 'md':
-      finalClass.value += ' rounded-[5px]'
-      break
-    case 'lg':
-      finalClass.value += ' rounded-[8px]'
-      break
-    case 'full':
-      finalClass.value += ' rounded-full'
-      break
-    default:
-      break
+    case 'none': cls += ' rounded-none'; break
+    case 'sm': cls += ' rounded-[3px]'; break
+    case 'md': cls += ' rounded-[5px]'; break
+    case 'lg': cls += ' rounded-[8px]'; break
+    case 'full': cls += ' rounded-full'; break
   }
-}
 
-onBeforeMount(() => {
-  initializeColor()
-  initializeSize()
-  initializeCorner()
+  return cls
 })
 </script>
 
