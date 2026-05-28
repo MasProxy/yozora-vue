@@ -84,11 +84,11 @@ const paddingClass = computed(() => {
 const sizeClass = computed(() => {
   switch (props.size) {
     case 'sm':
-      return 'text-sm h-[36px]'
+      return 'text-sm h-[40px] sm:h-[36px]'
     case 'lg':
-      return 'text-lg'
+      return 'text-lg h-[48px]'
     default:
-      return 'text-base'
+      return 'text-base h-[44px]'
   }
 })
 </script>

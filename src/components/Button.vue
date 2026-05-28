@@ -47,9 +47,9 @@ const finalClass = computed(() => {
   let cls = 'min-w-[80px] px-2 flex justify-center items-center font-medium disabled:cursor-default hover:cursor-pointer'
 
   switch (props.size) {
-    case 'xs': cls += ' h-[32px] text-xs'; break
-    case 'sm': cls += ' h-[36px] text-sm'; break
-    case 'md': cls += ' h-[40px] text-base'; break
+    case 'xs': cls += ' h-[40px] sm:h-[32px] text-sm'; break
+    case 'sm': cls += ' h-[44px] sm:h-[36px] text-sm'; break
+    case 'md': cls += ' h-[44px] sm:h-[40px] text-base'; break
     case 'lg': cls += ' h-[48px] text-base'; break
     case 'xl': cls += ' h-[52px] text-base'; break
   }
