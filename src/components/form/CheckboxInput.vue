@@ -47,11 +47,11 @@ function handleChange(event: Event): void {
 const sizeClass = computed(() => {
   switch (props.size) {
     case 'sm':
-      return 'w-3.5 h-3.5 text-sm'
+      return 'w-4 h-4 sm:w-3.5 sm:h-3.5 text-sm'
     case 'lg':
       return 'w-5 h-5 text-lg'
     default:
-      return 'w-4 h-4 text-base'
+      return 'w-5 h-5 sm:w-4 sm:h-4 text-base'
   }
 })
 </script>

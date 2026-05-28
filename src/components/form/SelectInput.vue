@@ -39,11 +39,11 @@ const sizeClass = computed(() => {
     props.size === 'md' ? (props.small ? 'sm' : 'md') : props.size
   switch (effectiveSize) {
     case 'sm':
-      return 'h-[36px]'
+      return 'h-[42px] sm:h-[36px]'
     case 'lg':
       return 'h-[48px]'
     default:
-      return 'h-[42px]'
+      return 'h-[48px] sm:h-[42px]'
   }
 })
 </script>
