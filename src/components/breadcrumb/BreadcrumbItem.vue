@@ -1,9 +1,9 @@
 <!--
  * Component: BreadcrumbItem
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: MasProxy
  * Date Created: 2025-02-16
- * Last Modified: 2026-01-30
+ * Last Modified: 2026-06-13
  * Description: This is a component for render a breadcrumb item.
 -->
 
@@ -17,28 +17,33 @@ interface BreadcrumbItemProps {
 
 withDefaults(defineProps<BreadcrumbItemProps>(), {
   title: '',
-  href: '#',
+  href: '',
   current: false,
   first: false,
 })
+
+type BreadcrumbItemEmits = (e: 'redirect') => void
+
+const emit = defineEmits<BreadcrumbItemEmits>()
 </script>
 
 <template>
   <template v-if="first">
     <li>
       <div class="flex items-center">
-        <template v-if="href === '#'">
-          <span
-            class="hover:cursor-pointer text-sm font-medium text-gray-700 hover:text-primary dark:text-dark-text dark:hover:text-primary">
-            {{ title }}
-          </span>
-        </template>
-        <template v-else>
+        <template v-if="href">
           <a
             :href="href"
             class="hover:cursor-pointer text-sm font-medium text-gray-700 hover:text-primary dark:text-dark-text dark:hover:text-primary">
             {{ title }}
           </a>
+        </template>
+        <template v-else>
+          <div
+            @click="emit('redirect')"
+            class="cursor-pointer text-sm font-medium text-gray-700 hover:text-primary dark:text-dark-text dark:hover:text-primary">
+            {{ title }}
+          </div>
         </template>
       </div>
     </li>
@@ -80,18 +85,19 @@ withDefaults(defineProps<BreadcrumbItemProps>(), {
             stroke-width="2"
             d="m1 9 4-4-4-4" />
         </svg>
-        <template v-if="href === '#'">
-          <span
-            class="hover:cursor-pointer ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-dark-muted dark:hover:text-dark-text">
-            {{ title }}
-          </span>
-        </template>
-        <template v-else>
+        <template v-if="href">
           <a
             :href="href"
-            class="hover:cursor-pointer ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-dark-muted dark:hover:text-dark-text">
+            class="hover:cursor-pointer ms-1 text-sm font-medium text-gray-700 hover:text-primary md:ms-2 dark:text-dark-muted dark:hover:text-dark-text">
             {{ title }}
           </a>
+        </template>
+        <template v-else>
+          <div
+            @click="emit('redirect')"
+            class="cursor-pointer ms-1 text-sm font-medium text-gray-700 hover:text-primary md:ms-2 dark:text-dark-muted dark:hover:text-dark-text">
+            {{ title }}
+          </div>
         </template>
       </div>
     </li>
